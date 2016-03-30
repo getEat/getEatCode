@@ -1,47 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
-/**
- *
- * @author ASUS-PC
- */
-public class Tenant extends Member {
-    private String Namatring; 
-    private String alamatTempaMakan;
+public class Tenant extends Member{
+
+    private String Nama;
+    private String alamatTempatMakan;
     private String daftarReview;
+    private String daftarMenu;
     private String profile;
     private String promosi;
-
+    private Member t = new Member();
+    
+    public Tenant(){
+        
+    }
+    
+    public Tenant(Member t, String nm, String alamt, String dReview, String dMenu, String pr, String prom){
+        this.t = t;
+        Nama = nm;
+        alamatTempatMakan = alamt;
+        daftarReview = dReview;
+        daftarMenu = dMenu;
+        profile = pr;
+        promosi = prom;
+        
+    }
+    
     /**
-     * @return the Namatring
+     * @return the Nama
      */
-    public String getNamatring() {
-        return Namatring;
+    public String getNama() {
+        return Nama;
     }
 
     /**
-     * @param Namatring the Namatring to set
+     * @param Nama the Nama to set
      */
-    public void setNamatring(String Namatring) {
-        this.Namatring = Namatring;
+    public void setNama(String Nama) {
+        this.Nama = Nama;
     }
 
     /**
-     * @return the alamatTempaMakan
+     * @return the alamatTempatMakan
      */
-    public String getAlamatTempaMakan() {
-        return alamatTempaMakan;
+    public String getAlamatTempatMakan() {
+        return alamatTempatMakan;
     }
 
     /**
-     * @param alamatTempaMakan the alamatTempaMakan to set
+     * @param alamatTempatMakan the alamatTempatMakan to set
      */
-    public void setAlamatTempaMakan(String alamatTempaMakan) {
-        this.alamatTempaMakan = alamatTempaMakan;
+    public void setAlamatTempatMakan(String alamatTempatMakan) {
+        this.alamatTempatMakan = alamatTempatMakan;
     }
 
     /**
@@ -56,6 +65,20 @@ public class Tenant extends Member {
      */
     public void setDaftarReview(String daftarReview) {
         this.daftarReview = daftarReview;
+    }
+
+    /**
+     * @return the daftarMenu
+     */
+    public String getDaftarMenu() {
+        return daftarMenu;
+    }
+
+    /**
+     * @param daftarMenu the daftarMenu to set
+     */
+    public void setDaftarMenu(String daftarMenu) {
+        this.daftarMenu = daftarMenu;
     }
 
     /**
@@ -85,5 +108,12 @@ public class Tenant extends Member {
     public void setPromosi(String promosi) {
         this.promosi = promosi;
     }
-    
+
+    public Member getT() {
+        return t;
+    }
+
+    public void setT(Member t) {
+        this.t = t;
+    }
 }
