@@ -1,8 +1,8 @@
-package geteat;
+package Model;
 
 /**
  *
- * @author Jonathan
+ * @author ASUS-PC
  */
 public class Member {
 
