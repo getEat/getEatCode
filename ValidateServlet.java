@@ -7,6 +7,8 @@ package Controller;
 
 import Connection.DatabaseConnection;
 import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,9 +25,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ValidateServlet", urlPatterns = {"/ValidateServlet"})
 public class ValidateServlet extends HttpServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         String username = request.getParameter("Username");
         String password = request.getParameter("Password");
 
@@ -37,14 +48,21 @@ public class ValidateServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 request.getSession(true).setAttribute("Username", rs.getString("username"));
-                if (rs.getString("tipe").equals("EATERS")) {
-                    response.sendRedirect("Halaman_Eaters.jsp");
-                } else if (rs.getString("tipe").equals("FOODHUNTER")) {
-                    response.sendRedirect("Halaman_Foodhunter.jsp");
-                } else if (rs.getString("tipe").equals("TENANT")) {
-                    response.sendRedirect("Halaman_Tenant.jsp");
-                } else if (rs.getString("tipe").equals("ADMIN")) {
-                    response.sendRedirect("Dashboard.html");
+                switch (rs.getString("tipe")) {
+                    case "EATERS":
+                        response.sendRedirect("Halaman_Eaters.jsp");
+                        break;
+                    case "FOODHUNTER":
+                        response.sendRedirect("Halaman_Foodhunter.jsp");
+                        break;
+                    case "TENANT":
+                        response.sendRedirect("Halaman_Tenant.jsp");
+                        break;
+                    case "ADMIN":
+                        response.sendRedirect("Dashboard.jsp");
+                        break;
+                    default:
+                        break;
                 }
             }
         } catch (SQLException ex) {
