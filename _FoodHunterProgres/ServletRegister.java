@@ -67,10 +67,7 @@ public class ServletRegister extends HttpServlet {
             }
         }
         
-        out.println("Masuk get"); 
-         out.println(fh.getNama()); 
-         out.println(fh.getEmail());
-         out.println(fh.getSosialMedia()); 
+        
            
             out.println("</body>");
             out.println("</html>"); 
