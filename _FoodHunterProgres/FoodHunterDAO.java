@@ -30,14 +30,7 @@ public class FoodHunterDAO {
     }
     
     public static void main(String[] args) throws SQLException {
-        FoodHunterDAO test = new FoodHunterDAO();
-        FoodHunter fh = new FoodHunter();
         
-        fh.setNama("putra");
-        fh.setEmail("ganteng");
-        fh.setSosialMedia("banget");
-        
-        test.add(fh);
     }
     
     public void add(FoodHunter fh) throws SQLException {
