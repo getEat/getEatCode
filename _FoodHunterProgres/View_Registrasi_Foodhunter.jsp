@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,7 +15,7 @@
 
 
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
-
+        <link rel="stylesheet" href="css/popoutstyle.css" type="text/css" />
         <link rel="stylesheet" href="css/RegisFHstyle.css">
     </head>
     <body>
@@ -48,7 +49,25 @@
                 </form>
             </div>
 
-
+            <% if(request.getAttribute("s") != null){
+               if(request.getAttribute("s").equals("berhasil")){
+            %>            
+            <script>
+ {
+    alert("Register Berhasil");
+}
+</script>
+                                    <%}
+            else{%>
+            <script>
+ {
+    alert("Register Gagal");
+}
+</script>
+            <% //request.getSession().invalidate();%>
+            <%}}%>
+            
+            
         </div>
 
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
