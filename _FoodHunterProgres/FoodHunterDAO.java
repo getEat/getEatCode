@@ -1,4 +1,4 @@
-package control;
+package Controller;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,7 +30,10 @@ public class FoodHunterDAO {
     }
     
     public static void main(String[] args) throws SQLException {
+        FoodHunterDAO test = new FoodHunterDAO();
+        FoodHunter fh = new FoodHunter();
         
+        test.add(fh);
     }
     
     public void add(FoodHunter fh) throws SQLException {
@@ -42,6 +45,15 @@ public class FoodHunterDAO {
 //        conn.commit();
         conn.close();
     }
+    
+     public void updateFoodHunter(FoodHunter fh, String email)throws SQLException {
+            String sql = "update foodhunter set nama= '"+fh.getNama()+"',Email='"+fh.getEmail()+"',SocialMedia='"+fh.getSosialMedia()+"' where email='"+email+"'";
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+//            conn.commit();
+            conn.close();
+    }
+    
     
     
 }

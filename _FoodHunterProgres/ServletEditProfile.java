@@ -1,9 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package Controller;
 
 import Model.FoodHunter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,14 +19,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author Putra
  */
-public class ServletRegister extends HttpServlet {
-    
-  
+public class ServletEditProfile extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -30,22 +42,30 @@ public class ServletRegister extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletRegister</title>");            
+            out.println("<title>Servlet ServletEditProfile</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletRegister at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletEditProfile at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-  
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String s = null;
-       
-//        HttpSession session = request.getSession(true);
+//        processRequest(request, response);
+         String s = null;
+       HttpSession ses= request.getSession(true);
         FoodHunterDAO reg = new FoodHunterDAO();
         FoodHunter fh = new FoodHunter();
         if (request.getParameter("nama") != null ) {
@@ -53,8 +73,9 @@ public class ServletRegister extends HttpServlet {
                 fh.setNama((String)request.getParameter("nama"));
                 fh.setEmail((String)request.getParameter("email"));
                 fh.setSosialMedia((String)request.getParameter("sm"));
-                reg.add(fh);
+                reg.updateFoodHunter(fh,(String)ses.getAttribute("email"));
                 s="berhasil";
+//                ses.setAttribute("email", (String)request.getParameter("email"));
 //                session.setAttribute("s", "berhasil");
             } catch (SQLException ex) {
                 Logger.getLogger(ServletRegister.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,26 +83,31 @@ public class ServletRegister extends HttpServlet {
 //               session.setAttribute("s", "gagal");
             }
         }
+        
 request.setAttribute("s", s);
-RequestDispatcher view = request.getRequestDispatcher("View_Registrasi_Foodhunter.jsp");
+RequestDispatcher view = request.getRequestDispatcher("view_EditProfile_Foodhunter.jsp");
 view.forward(request, response); 
-//    session.setAttribute("s", "s");
-//        request.setAttribute("s", s);
-//        request.getRequestDispatcher("View_Registrasi_Foodhunter.jsp").forward(request, response);
-        
-        
-           
-            
     }
 
-  
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        out.println("masuk Post");
-       
+        processRequest(request, response);
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
