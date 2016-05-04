@@ -67,7 +67,7 @@ body a:hover{
 }
 /*--menu--*/
 ul.sub{
-	border:1px solid #fff;
+	/*border:1px solid #fff;*/
 	position:absolute;
 	left: 79%;
 	width: 118px;
@@ -75,7 +75,7 @@ ul.sub{
 	margin: 0;
 	opacity: 0;
 	visibility: hidden;
-	top: 0;
+	top: 33px;
 	z-index: 1;
 	-webkit-transition: all .2s ease-in-out;
 	-moz-transition: all .2s ease-in-out;
@@ -94,7 +94,7 @@ ul.sub li {
     list-style: none;
 	display: block !important;
     padding: 3px 0 !important;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	/*border-bottom: 1px solid rgba(255, 255, 255, 0.25);*/
 }
 ul.sub li:nth-child(4){
 	border-bottom:none !important;
@@ -105,7 +105,7 @@ ul.sub li a {
 	text-decoration: none;	
 	font-weight: 400;	
 	font-size: 0.8em;
-	padding: 0.5em;
+	padding: 0.2em;
 }
 ul.sub li a:hover{
 	color:#8bc058;
@@ -129,10 +129,10 @@ ul.sub4 {
     padding: 25.5% 0;
 }
 .menu-top a span{
-	background:url(../images/menu-sprit.png) no-repeat;
-	width:35px;
-	height:35px;
-	display:block;
+	/*background:url(../images/menu-sprit.png) no-repeat;*/
+/*	width:100px;
+	height:20px;*/
+	/*display:block;*/
 	margin:0 auto;
 }
 .menu-top a span.one{
@@ -221,9 +221,9 @@ ul.sub4 {
 }
 .fresh-left ul {
     padding: 0;
-    background: #e9342c;
+    background: #1d2c3f;
     text-align: center;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
 	-webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -o-border-radius: 5px;
@@ -232,7 +232,7 @@ ul.sub4 {
 .fresh-left ul li {
     list-style: none;
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    /*border-bottom: 1px solid rgba(255, 255, 255, 0.25);*/
 }
 .fresh-left ul li:nth-child(4){
 	border-bottom:none;
@@ -538,9 +538,10 @@ list-style: none;
     font-family: 'Montserrat-Bold';
 }
 .fresh-left {
-    width: 10%;
-    float: left;
-    padding-right: 18px;
+    /*width: 10%;*/
+    float: right;
+    height: 10%;
+    /*padding-right: 18px;*/
 	position: relative;
 }
 .fresh-middle {
@@ -1442,7 +1443,8 @@ ul.sub {
     margin-top: 7%;
 }
 ul.sub {
-    left: 74%;
+    left: 98%;
+    top: 10%;
 }
 ul.sub4 {
     left: 15% !important;
@@ -1562,7 +1564,7 @@ ul.unit {
     margin-left: 3px;
 }
 .fresh-left {
-    padding-right: 15px;
+    /*padding-right: 15px;*/
 }
 .meal {
     margin-top: 17px;
@@ -1694,7 +1696,7 @@ ul.sub4 {
     font-size: 10px;
 }
 .fresh-left {
-    padding-right: 10px;
+    /*padding-right: 10px;*/
 }
 ul.sub {
     width: 100px;
@@ -1998,7 +2000,7 @@ ul.sub {
 	width: 28.3%;
 }
 .fresh-left {
-    padding-right: 15px;
+    /*padding-right: 15px;*/
 }
 .fresh-middle {
     width: 61.5%;
@@ -2224,7 +2226,7 @@ ul.sub {
 }
 .fresh-left ul li:nth-child(4) {
     border-bottom: none;
-	border-right: none;
+    border-right: none;
 }
 .menu-top a {
     padding: 9.5% 0;
@@ -2242,7 +2244,7 @@ ul.sub {
 }
 .fresh-left {
     width: 100%;
-	padding:0;
+    padding:0;
 }
 ul.sub li {
     width: 100% !important;
