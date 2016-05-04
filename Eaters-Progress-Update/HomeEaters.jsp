@@ -21,6 +21,8 @@
         <!--End Calender-->
     </head>
     <body>
+        <% HttpSession s = request.getSession(true);
+                                s.setAttribute("username", "Jonathan");%>
         <!--content-starts-->
         <div class="content">
             <div class="wrap">
@@ -30,7 +32,7 @@
                         <ul>
                             <li>
                                 <div class="menu-top">
-                                    <a href="#">Jonathan<span class="one"></span></a>
+                                    <a href="#"><%=session.getAttribute("username")%><span class="one"></span></a>
                                     <ul class="sub">
                                         <li><a href="#">My Profile</a></li>
                                         <li><a href="#">Logout</a></li>	
