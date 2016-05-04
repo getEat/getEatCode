@@ -31,9 +31,9 @@
 
             <div class="sidebar">
                 <ul id="nav">
-                    <li><a href="Dashboard.html">Home</a></li>
-                    <li><a class="selected" href="List_Member.html">List Member</a></li>
-                    <li><a href="List_Report.html">List Report</a></li>
+                    <li><a href="Dashboard.jsp">Home</a></li>
+                    <li c><a class="selected" href="List_Member.jsp">List Member</a></li>
+                    <li><a href="List_Report.jsp">List Report</a></li>
                     <li><a href="Login.html">Logout</a></li>
                 </ul>
 
