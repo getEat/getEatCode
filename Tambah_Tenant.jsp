@@ -1,14 +1,13 @@
 <%-- 
-    Document   : Dashboard
-    Created on : Apr 13, 2016, 9:24:08 AM
+    Document   : newjsp
+    Created on : Apr 13, 2016, 9:19:55 AM
     Author     : ASUS-PC
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<!DOCTYPE html>
-    <head>
+   <head>
         <title>GetEat! | Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/admin.css">
@@ -32,17 +31,17 @@
 
             <div class="sidebar">
                 <ul id="nav">
-                    <li><a class="selected" href="Dashboard.jsp">Home</a></li>
+                    <li><a href="Dashboard.jsp">Home</a></li>
                     <li><a href="List_Member.jsp">List Member</a></li>
                     <li><a href="List_Report.jsp">List Report</a></li>
-                    <li><a href="Tambah_Tenant.jsp">Tambah Tenant</a></li>
+                    <li><a class="selected"  href="Tambah_Tenant.jsp">Tambah Tenant</a></li>
                     <li><a href="Login.html">Logout</a></li>
                 </ul>
 
             </div>
 
             <div class="content">
-                <h1>Hello <%= session.getAttribute("Username") %></h1>
+                <h1>Tambah Tenant</h1>
                 <p>test</p>
 
                 <div id="box">
