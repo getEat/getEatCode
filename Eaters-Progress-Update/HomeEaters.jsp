@@ -21,8 +21,6 @@
         <!--End Calender-->
     </head>
     <body>
-        <% HttpSession s = request.getSession(true);
-                                s.setAttribute("username", "Jonathan");%>
         <!--content-starts-->
         <div class="content">
             <div class="wrap">
@@ -32,10 +30,10 @@
                         <ul>
                             <li>
                                 <div class="menu-top">
-                                    <a href="#"><%=session.getAttribute("username")%><span class="one"></span></a>
+                                    <a href="#">Jonathan<span class="one"></span></a>
                                     <ul class="sub">
-                                        <li><a href="#">My Profile</a></li>
-                                        <li><a href="#">Logout</a></li>	
+                                        <li><a href="UpdateProfile.jsp">My Profile</a></li>
+                                        <li><a href="Login.jsp">Logout</a></li>	
                                     </ul>
                                 </div>
                             </li>
@@ -158,7 +156,7 @@
                                                         <li>
                                                             <div align ="center" class="br1">
                                                                 <!-- <h4>1</h4> -->
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>	<!-- memanggil atribut dari class tenant yang reviewnya diklik -->			
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>	<!-- memanggil atribut dari class tenant yang reviewnya diklik -->			
                                                             </div>
                                                         </li>
                                                     </div>
@@ -184,7 +182,7 @@
                                                         <li>
                                                             <div align ="center" class="br1">
                                                                 <!-- <h4>1</h4> -->
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
@@ -209,7 +207,7 @@
                                                     <div class="callbacks_container">
                                                         <li>
                                                             <div align ="center" class="br1">
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
@@ -236,7 +234,7 @@
                                                         <li>
                                                             <div align ="center" class="br1">
                                                                 <!-- <h4>1</h4> -->
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
@@ -262,7 +260,7 @@
                                                         <li>
                                                             <div align ="center" class="br1">
                                                                 <!-- <h4>1</h4> -->
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
@@ -287,7 +285,7 @@
                                                     <div class="callbacks_container">
                                                         <li>
                                                             <div align ="center" class="br1">
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
@@ -314,7 +312,7 @@
                                                         <li>
                                                             <div align ="center" class="br1">
                                                                 <!-- <h4>1</h4> -->
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
@@ -340,7 +338,7 @@
                                                         <li>
                                                             <div align ="center" class="br1">
                                                                 <!-- <h4>1</h4> -->
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
@@ -365,7 +363,7 @@
                                                     <div class="callbacks_container">
                                                         <li>
                                                             <div align ="center" class="br1">
-                                                                <p><a href="HomeEaters.jsp">Go to Profile Tenant</a></p>
+                                                                <p><a href="Halaman_Profil_Tenant.jsp"target="_blank">Go to Profile Tenant</a></p>
                                                             </div>
                                                         </li>
                                                     </div>
