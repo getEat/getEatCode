@@ -4,4 +4,9 @@ Program Report (View Report, Controller, DAO)
 Update 04 Mei 2016
 -Update View HomeEaters
 -Exception pada Register Form
--Penambahan Session pada HomeEaters.jsp
+-Penambahan Session pada HomeEaters.jsp 
+
+Update 07 Mei 2016
+-Memberi akses Eaters untuk Go To Profile Tenant
+yang akan menuju ke halaman profil tenant
+-Halaman Profil Tenant yang fix akan diambil dari punya Tommy
