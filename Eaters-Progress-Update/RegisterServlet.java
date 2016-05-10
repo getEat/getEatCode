@@ -7,10 +7,12 @@ package Controller;
 
 import DAO.EatersDAO;
 import Model.Eaters;
+import Model.Member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,42 +66,46 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         EatersDAO dao = new EatersDAO();
         Eaters ea = new Eaters();
+        Member m = new Member();
         String nama = (String) request.getParameter("Nama");
         String alamat = (String) request.getParameter("Alamat");
         String email = (String) request.getParameter("Email");
         String username = (String) request.getParameter("Username");
         String password = (String) request.getParameter("Password");
         if (nama == "") {
-            out.println("Field Nama harus diisi");
-        } 
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ExceptionPageWeb.jsp");
+            dispatcher.forward(request, response);
+        }
         if (alamat == "") {
-            out.println("Field Alamat harus diisi");
-        } 
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ExceptionPageWeb.jsp");
+            dispatcher.forward(request, response);
+        }
         if (email == "") {
-            out.println("Field Email harus diisi");
-        } 
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ExceptionPageWeb.jsp");
+            dispatcher.forward(request, response);
+        }
         if (username == "") {
-            out.println("Field Username harus diisi");
-        } 
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ExceptionPageWeb.jsp");
+            dispatcher.forward(request, response);
+        }
         if (password == "") {
-            out.println("Field Password harus diisi");
-        } 
-        else {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ExceptionPageWeb.jsp");
+            dispatcher.forward(request, response);
+        } else {
             try {
                 ea.setNama(nama);
                 ea.setAlamat(alamat);
                 ea.setEmail(email);
-                dao.addEaters(ea);
+                m.setUserName(username);
+                m.setPassword(password);
+                dao.addEaters(ea, m);
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            out.print(ea.getNama());
-            out.print(ea.getAlamat());
-            out.print(ea.getEmail());
-            out.print("sukses");
         }
     }
 
