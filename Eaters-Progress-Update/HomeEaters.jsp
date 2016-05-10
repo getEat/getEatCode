@@ -22,7 +22,7 @@
     </head>
     <body>
               <% HttpSession s = request.getSession(true);
-                                s.setAttribute("username", "Jonathan");%>
+                                s.setAttribute("username", request.getParameter("Username"));%>
         <!--content-starts-->
         <div class="content">
             <div class="wrap">
@@ -445,7 +445,7 @@
                                 <div class="footer">
                                     <div class="container">
                                         <div class="footer-text">
-                                            <p>© 2016 GetEat!. All Rights Reserved</a> </p>
+                                            <p>© 2016 GetEat!. All Rights Reserved </p>
                                         </div>
                                     </div>
                                 </div>
