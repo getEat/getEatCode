@@ -32,7 +32,7 @@
             <div class="sidebar">
                 <ul id="nav">
                     <li><a href="Dashboard.jsp">Home</a></li>
-                    <li><a href="List_Member.jsp">List Member</a></li>
+                    <li><a href="List_Member">List Member</a></li>
                     <li><a href="List_Report.jsp">List Report</a></li>
                     <li><a class="selected"  href="Tambah_Tenant.jsp">Tambah Tenant</a></li>
                     <li><a href="logout.jsp">Logout</a></li>

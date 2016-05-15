@@ -33,7 +33,7 @@
             <div class="sidebar">
                 <ul id="nav">
                     <li><a class="selected" href="Dashboard.jsp">Home</a></li>
-                    <li><a href="List_Member.jsp">List Member</a></li>
+                    <li><a href="List_Member">List Member</a></li>
                     <li><a href="List_Report.jsp">List Report</a></li>
                     <li><a href="Tambah_Tenant.jsp">Tambah Tenant</a></li>
                     <li><a href="logout.jsp">Logout</a></li>
@@ -41,26 +41,7 @@
 
             </div>
 
-            <div class="content">
-                <h1>Hello <%=session.getAttribute("Username")%></h1>
-                    <div id="box">
-                    <div class="box-top">Test</div>
-                    <div class="box-panel">test</div>
-                </div>
-
-                <div id="box">
-                    <div class="box-top">Test</div>
-                    <div class="box-panel">test</div>
-                </div>
-
-
-                <div id="box">
-                    <div class="box-top">Test</div>
-                    <div class="box-panel">test</div>
-                </div>
-
-
-            </div>
+        
 
 
         </div><!-- #container -->

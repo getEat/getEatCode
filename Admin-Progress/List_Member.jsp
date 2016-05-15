@@ -3,8 +3,8 @@
     Created on : Apr 13, 2016, 9:23:12 AM
     Author     : ASUS-PC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,7 +32,7 @@
             <div class="sidebar">
                 <ul id="nav">
                     <li><a href="Dashboard.jsp">Home</a></li>
-                    <li><a class="selected" href="List_Member.jsp">List Member</a></li>
+                    <li><a class="selected" href="List_Member">List Member</a></li>
                     <li><a href="List_Report.jsp">List Report</a></li>
                     <li><a href="Tambah_Tenant.jsp">Tambah Tenant</a></li>
                     <li><a href="logout.jsp">Logout</a></li>
@@ -48,30 +48,53 @@
                     <div class="box-panel">
                         <TABLE cellSpacing=2 cellPadding=2 width=1000 border=0> 
 
-                            <TR><TD>Id Member</TD>
-                                <TD>Username</TD>
-                                <TD>Password</TD>
-                                <TD>Tipe</TD>
-                                <TD>Status</TD>
+                            <TR><TD align="center">Id Member</TD>
+                                <TD align="center">Username</TD>
+                                <TD align="center">Password</TD>
+                                <TD align="center">Tipe</TD>
+                                <TD align="center">Status</TD>
                             </TR> 
-
+                            <c:forEach items="${List_Member_Aktif}" var="p">
+                                 <TR>
+                                 <td align="center"> ${p.idMember}</td>
+                                 <td align="center"> ${p.userName}</td>
+                                 <td align="center"> ${p.password}</td>
+                                 <td align="center"> ${p.tipe}</td>
+                                 <td align="center"> ${p.status}</td>
+                                 <td><a href="Blokir_Member?id=${p.idMember}">Blokir</a></td>
+                                 
+                                 </TR>
+                             </c:forEach>
                         </TABLE> 
-                        <HR WIDTH="100%">
+                        
+                     
+                                
                     </div>
-
+                    
                     <div id="box">
                         <div class="box-top">Member Blokir</div>
                         <div class="box-panel">
                             <TABLE cellSpacing=2 cellPadding=2 width=1000 border=0> 
 
-                                <TR><TD>Id Member</TD>
-                                    <TD>Username</TD>
-                                    <TD>Password</TD>
-                                    <TD>Tipe</TD>
-                                    <TD>Status</TD>
-                                </TR> 
+                            <TR><TD align="center">Id Member</TD>
+                                <TD align="center">Username</TD>
+                                <TD align="center">Password</TD>
+                                <TD align="center">Tipe</TD>
+                                <TD align="center">Status</TD>
+                            </TR>  
+                            <c:forEach items="${List_Member_Blokir}" var="p">
+                                 <TR>
+                                 <td align="center"> ${p.idMember}</td>
+                                 <td align="center"> ${p.userName}</td>
+                                 <td align="center"> ${p.password}</td>
+                                 <td align="center"> ${p.tipe}</td>
+                                 <td align="center"> ${p.status}</td>
+                                 <td><a href="Unblokir_Member?id=${p.idMember}">Unblokir</a></td>
+                                 
+                                 </TR>
+                             </c:forEach>
                             </TABLE> 
-                            <HR WIDTH="100%">
+                            
                         </div>
 
 
@@ -79,15 +102,25 @@
                         <div id="box">
                             <div class="box-top">Member Pending</div>
                             <div class="box-panel"><TABLE cellSpacing=2 cellPadding=2 width=1000 border=0> 
-                                    <TR><TD>Id Member</TD>
-                                        <TD>Username</TD>
-                                        <TD>Password</TD>
-                                        <TD>Tipe</TD>
-                                        <TD>Status</TD>
-                                    </TR>
-                            
+                                <TR><TD align="center">Id Member</TD>
+                                <TD align="center">Username</TD>
+                                <TD align="center">Password</TD>
+                                <TD align="center">Tipe</TD>
+                                <TD align="center">Status</TD>
+                            </TR> 
+                             <c:forEach items="${List_Member_Pending}" var="p">
+                                 <TR>
+                                 <td align="center"> ${p.idMember}</td>
+                                 <td align="center"> ${p.userName}</td>
+                                 <td align="center"> ${p.password}</td>
+                                 <td align="center"> ${p.tipe}</td>
+                                 <td align="center"> ${p.status}</td>
+                                 <td><a href="Unblokir_Member?id=${p.idMember}">Terima</a></td>
+                                 
+                                 </TR>
+                             </c:forEach>
                                 </TABLE> 
-                                <HR WIDTH="100%">
+                                
                             </div>
                         </div>
                     </div><!-- #container -->
