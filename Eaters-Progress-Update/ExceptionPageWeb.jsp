@@ -33,11 +33,12 @@
                 <img src="images/panda1.png" alt="under-construction">
             </div>
             <div class="content3">
-                <p>You must input value for all of the fields</p>
+                <p>You must input a value for all of the fields</p>
                 <a href="Register.jsp">Back to Register</a>
             </div>
 
         </div>
+        <br>
         <div class="footer">
             <p>© 2016 GetEat!. All Rights Reserved </p>
         </div>
