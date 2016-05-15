@@ -1,21 +1,20 @@
 <%-- 
-    Document   : Report
-    Created on : Apr 26, 2016, 10:34:41 PM
+    Document   : Comment
+    Created on : Apr 19, 2016, 6:39:26 PM
     Author     : Jonathan
 --%>
-
 <%@page import="DAO.ReviewDAO"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GetEat! | Report</title>
+        <title>GetEat! | Detail Review</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Food and Drink Ui Kit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-        <link href="css/styleReport.css" rel='stylesheet' type='text/css' />
+        <link href="css/styleUsefulFunnyComment.css" rel='stylesheet' type='text/css' />
         <link href="css/styleMenu.css" rel='stylesheet' type='text/css' />
         <script src="js/jquery.min.js"></script>
         <!--Calender-->
@@ -47,7 +46,6 @@
                                 </div>
                                 </div>
 
-
                                 <div class="banner ban1">
                                     <div class="container">
                                         <div align="center" class="top-menu">
@@ -74,7 +72,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="content-main">
                                     <div class="content-left">
 
@@ -88,8 +85,8 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>                  
-                                                        <% ReviewDAO rdao = new ReviewDAO();%>
+                                                    <p><%
+                                        ReviewDAO rdao = new ReviewDAO();%>
                                                         <%=rdao.getRating("1111")%>
                                                     </p>
                                                 </div>
@@ -107,6 +104,37 @@
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
+                                                        <table border="0" width="250px" height="40px" align="center">
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="UsefulServlet"><img src="images/useful.png" width="50px" height="50px"></a>
+                                                                    <!-- ketika di-klik akan menambah nilai atribut useful dengan 1 pada review tersebut-->
+                                                                </td>
+                                                                <td><p></p></td>
+                                                                <td><p></p></td>
+                                                                <td><p></p></td>
+                                                                <td><p></p></td>
+                                                                <td>
+                                                                    <a href="FunnyServlet"><img src="images/funny.png" width="50px" height="50px"></a>
+                                                                    <!-- ketika di-klik akan menambah nilai atribut funny dengan 1 pada review tersebut-->
+                                                                </td>
+                                                                <td><p></p></td>
+                                                                <td><p></p></td>
+                                                                <td><p></p></td>
+                                                                <td>
+                                                                    <a href="RatingServlet"><img src="images/rating.png" width="50px" height="50px"></a>
+                                                                    <!-- ketika di-klik akan menambah nilai atribut rating dengan 1 pada review tersebut-->
+                                                                </td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </div>
+                                                    <div class="clearfix"> </div>
+
+                                                </div>
+                                                <br>
+                                                <div class="berger">
+                                                    <div class="callbacks_container">
                                                         <li>
                                                             <div align ="center" class="br1">
                                                                 <!-- <h4>1</h4> -->
@@ -116,10 +144,6 @@
                                                     </div>
                                                     <div class="clearfix"> </div>
                                                 </div>
-
-                                                <br>
-
-                                                <div class="clearfix"> </div>
                                             </div>
 
                                             <div class="meal-middle">
@@ -140,13 +164,24 @@
 
                                             <div class="meal-right">
                                                 <div id="comment_form">
-
-                                                    <form action="ReportServlet" method="post">
+                                                    <form action="CommentServlet" method="post">
                                                         <div>
-                                                            <textarea rows="10" name="report" id="report" placeholder="Report Details"></textarea>
+                                                            <textarea rows="10" name="comment" id="comment" placeholder="Comment"></textarea>
                                                             <!-- memberi nilai atribut comment pada id_review tersebut  -->
                                                         </div>
-                                                        <div>
+
+                                                        <div align="right">
+                                                            <input type="submit" name="submit" value="Add Comment">
+                                                            <!-- menyimpan comment yang diketik eaters pada review tersebut pada database-->
+                                                            <!--<input type="submit" name="submit" value="Report">-->
+                                                            <!-- jika klik akan masuk pada halaman report-->
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <br>
+                                                <div id="comment_form">
+                                                    <form action="Report.jsp">
+                                                        <div align="right">
                                                             <input type="submit" name="submit" value="Report">
                                                             <!-- menyimpan comment yang diketik eaters pada review tersebut pada database-->
                                                             <!--<input type="submit" name="submit" value="Report">-->
@@ -190,9 +225,9 @@
                                 <!--Slider-Starts-Here-->
                                 <script src="js/responsiveslides.min.js"></script>
                                 <script>
-                                // You can also use "$(window).load(function() {"
+                                    // You can also use "$(window).load(function() {"
                                     $(function () {
-                                // Slideshow 4
+                                        // Slideshow 4
                                         $("#slider4").responsiveSlides({
                                             auto: true,
                                             pager: false,
@@ -241,4 +276,3 @@
                                 <!--footer-end-->	
                                 </body>
                                 </html>
-

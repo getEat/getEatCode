@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.EatersDAO;
+import DAO.MemberDAO;
 import Model.Eaters;
 import Model.Member;
 import java.io.IOException;
@@ -67,6 +68,7 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         EatersDAO dao = new EatersDAO();
+        MemberDAO mdao = new MemberDAO();
         Eaters ea = new Eaters();
         Member m = new Member();
         String nama = (String) request.getParameter("Nama");
@@ -100,7 +102,8 @@ public class RegisterServlet extends HttpServlet {
                 ea.setEmail(email);
                 m.setUserName(username);
                 m.setPassword(password);
-                dao.addEaters(ea, m);
+                dao.addEaters(ea);
+                mdao.addEaters(m);
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {

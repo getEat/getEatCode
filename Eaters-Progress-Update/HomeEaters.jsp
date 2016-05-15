@@ -1,3 +1,4 @@
+<%@page import="DAO.ReviewDAO"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,9 +22,7 @@
         <!--End Calender-->
     </head>
     <body>
-              <% HttpSession s = request.getSession(true);
-                                s.setAttribute("username", request.getParameter("Username"));%>
-        <!--content-starts-->
+       <!--content-starts-->
         <div class="content">
             <div class="wrap">
                 <div class="content-head">
@@ -32,17 +31,15 @@
                         <ul>
                             <li>
                                 <div class="menu-top">
-                                    <a href="#"><%=session.getAttribute("username")%><span class="one"></span></a>
+                                    <a href="#"><%=session.getAttribute("Username")%><span class="one"></span></a>
                                     <ul class="sub">
                                         <li><a href="UpdateProfile.jsp">My Profile</a></li>
-                                        <li><a href="Login.jsp"><%session.invalidate();%>Logout</a></li>	
+                                        <li><a href="LogoutServlet">Logout</a></li>	
                                     </ul>
                                 </div>
                             </li>
                             <li>
                                 </div>
-                                <!--<h6><a href="HomeEaters.jsp">Hello, Jonathan |</a>-->
-                                <!--</h6>-->
                                 </div>
 
                                 <div class="banner ban1">
@@ -50,12 +47,12 @@
                                         <div align="center" class="top-menu">
                                             <span class="menu"> alt=""/> </span>
                                             <ul>
-                                                <li><a  href="HomeEaters.html">home</a></li>
-                                                <li><a  href="about.html">about</a></li><!-- memberikan detail informasi GetEat! -->
-                                                <li><a  href="menu.html">menus</a></li>
-                                                <li><a  href="gallery.html">gallery</a></li>
-                                                <li><a  href="events.html">discount</a></li><!-- akan memanggil halaman berisi promo atau discount tenant -->
-                                                <li><a  href="contact.html">contact</a></li>
+                                                <li><a href="HomeEaters.jsp">home</a></li>
+                                                <li><a href="about.html">about</a></li><!-- memberikan detail informasi GetEat! -->
+                                                <li><a href="menu.html">menus</a></li>
+                                                <li><a href="gallery.html">gallery</a></li>
+                                                <li><a href="events.html">discount</a></li><!-- akan memanggil halaman berisi promo atau discount tenant -->
+                                                <li><a href="contact.html">contact</a></li>
                                             </ul>
                                             <!-- script for menu -->
 
@@ -143,7 +140,7 @@
 
                                         <div class="meal">
                                             <div class="meal-left">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -151,7 +148,22 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p><%
+                                                        ReviewDAO rdao = new ReviewDAO();%>
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -169,7 +181,7 @@
 
                                         <div class="meal">
                                             <div class="meal-middle">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -177,7 +189,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -195,7 +221,7 @@
 
                                         <div class"meal">
                                              <div class="meal-right">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -203,7 +229,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>                                                       
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -221,7 +261,7 @@
 
                                         <div class="meal">
                                             <div class="meal-left">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -229,7 +269,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>                                                       
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -247,7 +301,7 @@
 
                                         <div class="meal">
                                             <div class="meal-middle">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -255,7 +309,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>                                                       
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -273,7 +341,7 @@
 
                                         <div class"meal">
                                              <div class="meal-right">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -281,7 +349,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>                                                       
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -299,7 +381,7 @@
 
                                         <div class="meal">
                                             <div class="meal-left">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -307,7 +389,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>                                                       
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -325,7 +421,7 @@
 
                                         <div class="meal">
                                             <div class="meal-middle">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -333,7 +429,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>                                                       
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
@@ -351,7 +461,7 @@
 
                                         <div class="meal">
                                             <div class="meal-right">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <a href="Rating&Comment.jsp"><img src="images/berger-banner.jpg" alt="" /></a>
                                                 <div class="berger-top">
                                                     <h3>Mystery Box Burger</h3>
                                                     <p>Step by step recipe</p>
@@ -359,7 +469,21 @@
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>4.8</p>
+                                                    <p>                                                       
+                                                        <%=rdao.getRating("1111")%>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidetwo">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    </p>
+                                                </div>
+                                                <div class="berger-sidethree">
+                                                    <a href="#"><span></span></a>
+                                                    <p>
+                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    </p>
                                                 </div>
                                                 <div class="berger">
                                                     <div class="callbacks_container">
