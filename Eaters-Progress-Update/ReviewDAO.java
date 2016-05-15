@@ -11,8 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -26,6 +29,96 @@ public class ReviewDAO {
 
     public ReviewDAO() {
 
+    }
+
+    public void addUseful(Review review) throws SQLException {
+        PreparedStatement preparedstatement;
+        int useful = getUseful("1111") + 1;
+        try {
+            preparedstatement = conn.prepareStatement("update REVIEW set Useful=" + useful + " where idReview='1111'");
+            preparedstatement.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void addFunny(Review review) throws SQLException {
+        PreparedStatement preparedstatement;
+        int funny = getFunny("1111") + 1;
+        try {
+            preparedstatement = conn.prepareStatement("update REVIEW set Funny=" + funny + " where idReview='1111'");
+            preparedstatement.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void addRating(Review review) throws SQLException {
+        PreparedStatement preparedstatement;
+        int rating = getRating("1111") + 1;
+        try {
+            if(rating > 5){
+                conn.close();
+            }
+            preparedstatement = conn.prepareStatement("update REVIEW set Rating=" + rating + " where idReview='1111'");
+            preparedstatement.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public int getUseful(String id) throws SQLException {
+        PreparedStatement preparedstatement;
+        Statement stmt = conn.createStatement();
+        int useful = 0;
+        try {
+            String sql = "SELECT useful FROM review WHERE idReview ='" + id + "'";
+            ResultSet rset = stmt.executeQuery(sql);
+            while (rset.next()) {
+                useful = Integer.parseInt(rset.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return useful;
+    }
+
+    public int getFunny(String id) throws SQLException {
+        PreparedStatement preparedstatement;
+        Statement stmt = conn.createStatement();
+        int funny = 0;
+        try {
+            String sql = "SELECT funny FROM review WHERE idReview ='" + id + "'";
+            ResultSet rset = stmt.executeQuery(sql);
+            while (rset.next()) {
+                funny = Integer.parseInt(rset.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return funny;
+    }
+
+    public int getRating(String id) throws SQLException {
+        PreparedStatement preparedstatement;
+        Statement stmt = conn.createStatement();
+        int rating = 0;
+        try {
+            String sql = "SELECT rating FROM review WHERE idReview ='" + id + "'";
+            ResultSet rset = stmt.executeQuery(sql);
+            while (rset.next()) {
+                rating = Integer.parseInt(rset.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rating;
     }
 
     public void addComment(Review review) {
@@ -53,4 +146,5 @@ public class ReviewDAO {
             Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
