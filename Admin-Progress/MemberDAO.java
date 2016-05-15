@@ -5,10 +5,15 @@
  */
 package Controller;
 
+import Connection.DatabaseConnection;
 import Model.Member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,40 +22,92 @@ import java.util.logging.Logger;
  * @author ASUS-PC
  */
 public class MemberDAO {
-    private Connection connection;
-    private final String addMember = "INSERT INTO MEMBER (idMember,username,password,status) VALUES (?,?,?,'AKTIF')";
-    private final String changePassword = "UPDATE MEMBER SET Password = ? WHERE USERNAME ='username'";
+    Connection conn = DatabaseConnection.getDBConnection();
+    ResultSet result;
+
+    public MemberDAO() {
+    }
+    
     public MemberDAO (Connection connection) { 
-        this.connection = connection;
+       
     }
-    
-    public void addMember (Member member)  {
-            PreparedStatement statement;
-            statement = null;            
-            try {
-                connection.setAutoCommit(false);
-                statement = connection.prepareStatement(addMember);
-                statement.setString(1,member.getIdMember());
-                statement.setString(2,member.getUserName());
-                statement.setString(3,member.getPassword());
-                statement.executeQuery();
-                connection.commit();
-            } catch (SQLException ex) {
-            Logger.getLogger(MemberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        public static List<Member> listMemberAktif() throws SQLException {
+        List<Member> ls = new LinkedList<>();
+        
+        Connection conn =DatabaseConnection.getDBConnection();
+        ResultSet result;
+        Statement statement = conn.createStatement();
+        String  sql1 = "SELECT * FROM MEMBER WHERE STATUS = 'AKTIF'";
+        ResultSet res = statement.executeQuery(sql1);
+        while (res.next()) {
+            Member m = new Member();
+            m.setIdMember(res.getString("idmember"));
+            m.setUserName(res.getString("username"));
+            m.setPassword(res.getString("password"));
+            m.setTipe(res.getString("tipe"));
+            m.setStatus(res.getString("status"));
+            ls.add(m);
         }
+        return ls;
     }
-    
-    public void changePassword (Member member)   {
-            PreparedStatement statement;
-            statement = null;            
-            try {
-                connection.setAutoCommit(false);
-                statement = connection.prepareStatement(changePassword);
-                statement.setString(1,member.getPassword());
-                statement.executeQuery();
-                connection.commit();
-            } catch (SQLException ex) {
-            Logger.getLogger(MemberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        
+      public static List<Member> listMemberBlokir() throws SQLException {
+        List<Member> ls = new LinkedList<>();
+        
+        Connection conn =DatabaseConnection.getDBConnection();
+        ResultSet result;
+        Statement statement = conn.createStatement();
+        String  sql1 = "SELECT * FROM MEMBER WHERE STATUS = 'BLOKIR'";
+        ResultSet res = statement.executeQuery(sql1);
+        while (res.next()) {
+            Member m = new Member();
+            m.setIdMember(res.getString("idmember"));
+            m.setUserName(res.getString("username"));
+            m.setPassword(res.getString("password"));
+            m.setTipe(res.getString("tipe"));
+            m.setStatus(res.getString("status"));
+            ls.add(m);
         }
-}
+        return ls;
+    }   
+      
+            public static List<Member> listMemberPending() throws SQLException {
+        List<Member> ls = new LinkedList<>();
+        
+        Connection conn =DatabaseConnection.getDBConnection();
+        ResultSet result;
+        Statement statement = conn.createStatement();
+        String  sql1 = "SELECT * FROM MEMBER WHERE STATUS = 'PENDING'";
+        ResultSet res = statement.executeQuery(sql1);
+        while (res.next()) {
+            Member m = new Member();
+            m.setIdMember(res.getString("idmember"));
+            m.setUserName(res.getString("username"));
+            m.setPassword(res.getString("password"));
+            m.setTipe(res.getString("tipe"));
+            m.setStatus(res.getString("status"));
+            ls.add(m);
+        }
+        return ls;
+    }   
+        
+   
+        
+   public void blokirMember (String id) throws SQLException {
+        PreparedStatement statement;
+             Member m = new Member();
+            String sql ="UPDATE MEMBER SET STATUS = 'BLOKIR' WHERE idmember = '"+id+"'";
+            statement = conn.prepareStatement(sql);
+            statement.executeQuery();
+            conn.commit();
+   }
+   
+    public void unBlokirMember (String id) throws SQLException {
+        PreparedStatement statement;
+             Member m = new Member();
+            String sql ="UPDATE MEMBER SET STATUS = 'AKTIF' WHERE idmember = '"+id+"'";
+            statement = conn.prepareStatement(sql);
+            statement.executeQuery();
+            conn.commit();
+   }
 }
