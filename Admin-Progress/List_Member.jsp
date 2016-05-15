@@ -10,8 +10,10 @@
     <head>
         <title>GetEat! | Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/admin.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
@@ -46,81 +48,94 @@
                 <div id="box">
                     <div class="box-top">Member Aktif</div>
                     <div class="box-panel">
-                        <TABLE cellSpacing=2 cellPadding=2 width=1000 border=0> 
-
-                            <TR><TD align="center">Id Member</TD>
-                                <TD align="center">Username</TD>
-                                <TD align="center">Password</TD>
-                                <TD align="center">Tipe</TD>
-                                <TD align="center">Status</TD>
-                            </TR> 
+                        <table class="table table-condensed">
+                            <thead>
+                                <TR>
+                                    <td span style="font-weight:bold" align="center">Id Member</td>
+                                    <td span style="font-weight:bold" align="center">Username</td>
+                                    <td span style="font-weight:bold" align="center">Password</td>
+                                    <td span style="font-weight:bold" align="center">Tipe</td>
+                                    <td span style="font-weight:bold" align="center">Status</td>
+                                </TR>
+                            </thead>
                             <c:forEach items="${List_Member_Aktif}" var="p">
-                                 <TR>
-                                 <td align="center"> ${p.idMember}</td>
-                                 <td align="center"> ${p.userName}</td>
-                                 <td align="center"> ${p.password}</td>
-                                 <td align="center"> ${p.tipe}</td>
-                                 <td align="center"> ${p.status}</td>
-                                 <td><a href="Blokir_Member?id=${p.idMember}">Blokir</a></td>
-                                 
-                                 </TR>
-                             </c:forEach>
-                        </TABLE> 
-                        
-                     
-                                
+                                <tbody>
+                                    <TR>
+                                        <td align="center"> ${p.idMember}</td>
+                                        <td align="center"> ${p.userName}</td>
+                                        <td align="center"> ${p.password}</td>
+                                        <td align="center"> ${p.tipe}</td>
+                                        <td align="center" > ${p.status}</td>
+                                        <td><a href="Blokir_Member?id=${p.idMember}">Blokir</a></td>
+
+                                    </TR>
+                                </tbody>
+                            </c:forEach>
+                        </table> 
+
+
+
                     </div>
-                    
+
                     <div id="box">
                         <div class="box-top">Member Blokir</div>
                         <div class="box-panel">
-                            <TABLE cellSpacing=2 cellPadding=2 width=1000 border=0> 
+                            <table class="table table-condensed">
+                                <thead>
+                                    <TR>
+                                        <td span style="font-weight:bold" align="center">Id Member</td>
+                                        <td span style="font-weight:bold" align="center">Username</td>
+                                        <td span style="font-weight:bold" align="center">Password</td>
+                                        <td span style="font-weight:bold" align="center">Tipe</td>
+                                        <td span style="font-weight:bold" align="center">Status</td>
+                                    </TR>
+                                </thead>
+                                <c:forEach items="${List_Member_Blokir}" var="p">
+                                    </tbody>
+                                    <TR>
+                                        <td align="center"> ${p.idMember}</td>
+                                        <td align="center"> ${p.userName}</td>
+                                        <td align="center"> ${p.password}</td>
+                                        <td align="center"> ${p.tipe}</td>
+                                        <td align="center"> ${p.status}</td>
+                                        <td><a href="Unblokir_Member?id=${p.idMember}">Unblokir</a></td>
 
-                            <TR><TD align="center">Id Member</TD>
-                                <TD align="center">Username</TD>
-                                <TD align="center">Password</TD>
-                                <TD align="center">Tipe</TD>
-                                <TD align="center">Status</TD>
-                            </TR>  
-                            <c:forEach items="${List_Member_Blokir}" var="p">
-                                 <TR>
-                                 <td align="center"> ${p.idMember}</td>
-                                 <td align="center"> ${p.userName}</td>
-                                 <td align="center"> ${p.password}</td>
-                                 <td align="center"> ${p.tipe}</td>
-                                 <td align="center"> ${p.status}</td>
-                                 <td><a href="Unblokir_Member?id=${p.idMember}">Unblokir</a></td>
-                                 
-                                 </TR>
-                             </c:forEach>
+                                    </TR>
+                                    </tbody>
+                                </c:forEach>
                             </TABLE> 
-                            
+
                         </div>
 
 
 
                         <div id="box">
                             <div class="box-top">Member Pending</div>
-                            <div class="box-panel"><TABLE cellSpacing=2 cellPadding=2 width=1000 border=0> 
-                                <TR><TD align="center">Id Member</TD>
-                                <TD align="center">Username</TD>
-                                <TD align="center">Password</TD>
-                                <TD align="center">Tipe</TD>
-                                <TD align="center">Status</TD>
-                            </TR> 
-                             <c:forEach items="${List_Member_Pending}" var="p">
-                                 <TR>
-                                 <td align="center"> ${p.idMember}</td>
-                                 <td align="center"> ${p.userName}</td>
-                                 <td align="center"> ${p.password}</td>
-                                 <td align="center"> ${p.tipe}</td>
-                                 <td align="center"> ${p.status}</td>
-                                 <td><a href="Unblokir_Member?id=${p.idMember}">Terima</a></td>
-                                 
-                                 </TR>
-                             </c:forEach>
+                            <div class="box-panel">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <TR>
+                                            <td span style="font-weight:bold" align="center">Id Member</td>
+                                            <td span style="font-weight:bold" align="center">Username</td>
+                                            <td span style="font-weight:bold" align="center">Password</td>
+                                            <td span style="font-weight:bold" align="center">Tipe</td>
+                                            <td span style="font-weight:bold" align="center">Status</td>
+                                        </TR>
+                                    </thead>
+                                    <c:forEach items="${List_Member_Pending}" var="p">
+                                        <tbody>
+                                            <TR>                  
+                                                <td align="center"> ${p.idMember}</td>
+                                                <td align="center"> ${p.userName}</td>
+                                                <td align="center"> ${p.password}</td>
+                                                <td align="center"> ${p.tipe}</td>
+                                                <td align="center"> ${p.status}</td>
+                                                <td><a href="Unblokir_Member?id=${p.idMember}">Terima</a></td>
+                                            </TR>
+                                        </tbody>
+                                    </c:forEach>
                                 </TABLE> 
-                                
+
                             </div>
                         </div>
                     </div><!-- #container -->
