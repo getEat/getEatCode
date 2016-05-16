@@ -10,8 +10,10 @@
    <head>
         <title>GetEat! | Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/admin.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
@@ -33,7 +35,7 @@
                 <ul id="nav">
                     <li><a href="Dashboard.jsp">Home</a></li>
                     <li><a href="List_Member">List Member</a></li>
-                    <li><a class="selected"  href="List_Report.jsp">List Report</a></li>
+                    <li><a class="selected" href="List_Review">List Report</a></li>
                     <li><a href="Tambah_Tenant.jsp">Tambah Tenant</a></li>
                     <li><a href="logout.jsp">Logout</a></li>
                 </ul>
@@ -41,7 +43,43 @@
             </div>
 
             <div class="content">
- 
+                <h1>List Member</h1>
+
+                <div id="box">
+                    <div class="box-top">List Review</div>
+                    <div class="box-panel">
+                        <table class="table table-condensed">
+                            <thead>
+                                <TR>
+                                    <td span style="font-weight:bold" align="center">Id Review</td>
+                                    <td span style="font-weight:bold" align="center">Useful</td>
+                                    <td span style="font-weight:bold" align="center">Funny</td>
+                                    <td span style="font-weight:bold" align="center">Rating</td>
+                                    <td span style="font-weight:bold" align="center">Comment</td>
+                                    <td span style="font-weight:bold" align="center">Status</td>
+                                    <td span style="font-weight:bold" align="center">Report Details</td>
+                                </TR>
+                            </thead>
+                            <c:forEach items="${List_Review}" var="p">
+                                <tbody>
+                                    <TR>
+                                        <td align="center"> ${p.idReview}</td>
+                                        <td align="center"> ${p.useful}</td>
+                                        <td align="center"> ${p.funny}</td>
+                                        <td align="center"> ${p.rating}</td>
+                                        <td align="center" > ${p.comments}</td>
+                                        <td align="center" > ${p.status}</td>
+                                        <td align="center" > ${p.reportdetails}</td>
+                                        <td><a href="Hapus_Review?id=${p.idReview}">Hapus</a></td>
+
+                                    </TR>
+                                </tbody>
+                            </c:forEach>
+                        </table> 
+
+
+
+                    </div>
             </div>
 
 

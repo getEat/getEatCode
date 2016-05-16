@@ -9,20 +9,43 @@ public class Review {
     private String idReview;
     private int useful;
     private int Funny;
+    private int Rating;
     private String Comment;
     private String Status;
+    private String ReportDetails;
+
+    public int getRating() {
+        return Rating;
+    }
+
+    public Review(String idReview, int useful, int Funny, int Rating, String Comment, String Status, String ReportDetails) {
+        this.idReview = idReview;
+        this.useful = useful;
+        this.Funny = Funny;
+        this.Rating = Rating;
+        this.Comment = Comment;
+        this.Status = Status;
+        this.ReportDetails = ReportDetails;
+    }
+
+    public void setRating(int Rating) {
+        this.Rating = Rating;
+    }
+
+    public String getReportDetails() {
+        return ReportDetails;
+    }
+
+    public void setReportDetails(String ReportDetails) {
+        this.ReportDetails = ReportDetails;
+    }
+    
 
     public Review() {
 
     }
 
-    public Review(String idReview, int useful, int Funny, String Comment, String Status) {
-        this.idReview = idReview;
-        this.useful = useful;
-        this.Funny = Funny;
-        this.Comment = Comment;
-        this.Status = Status;
-    }
+
 
     /**
      * @return the idReview
