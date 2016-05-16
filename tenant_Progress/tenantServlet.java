@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 
-import Controller.ReviewDAO;
-import Controller.TenantDAO;
-import Model.Tenant;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -25,7 +22,7 @@ public class tenantServlet extends HttpServlet {
      // For Tomcat, define as <Resource> in context.xml and declare as <resource-ref> in web.xml.
    
 
-   private TenantDAO tenantDAO;
+   private TenantDAO dao;
    private ReviewDAO reviewDAO;
    
     private static String INSERT_OR_EDIT = "/Halaman_Profil_Tenant.jsp";
@@ -33,7 +30,8 @@ public class tenantServlet extends HttpServlet {
 
     public tenantServlet(){
         super();
-        tenantDAO = new TenantDAO();
+       dao = new TenantDAO();
+       reviewDAO = new ReviewDAO();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -64,12 +62,14 @@ public class tenantServlet extends HttpServlet {
        if (action.equalsIgnoreCase("edit")){
             forward = INSERT_OR_EDIT;
             String tenId = request.getParameter("idtenant");
-            Tenant ten = tenantDAO.getTenantById(tenId);
+            Tenant ten = dao.getTenantById(tenId);
             request.setAttribute("ten", ten);
-        } else if (action.equalsIgnoreCase("listReview")){
+        } 
+       else if (action.equalsIgnoreCase("listReview")){
             forward = LIST_REVIEW;
-            request.setAttribute("review", reviewDAO.getAllReviews("idtenant"));
-        } else {
+            request.setAttribute("review", reviewDAO.getAllReviews("qw3222"));
+        } 
+       else {
             forward = INSERT_OR_EDIT;
         }
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -90,18 +90,19 @@ public class tenantServlet extends HttpServlet {
         Tenant tena = new Tenant();
         tena.setNama(request.getParameter("nama"));
         tena.setAlamatTempatMakan(request.getParameter("address"));
-        tena.setUserName(request.getParameter("username"));
+        tena.setUsername(request.getParameter("user"));
         tena.setPassword(request.getParameter("password"));
         tena.setOwner(request.getParameter("owner"));
     
         String tenantID = request.getParameter("idtenant");
         if(tenantID != null) {
             tena.setIdTenant(tenantID);
-            tenantDAO.updateTenant(tena);
+            dao.updateTenant(tena);
         }
         else {
             
         }
+
         RequestDispatcher view = request.getRequestDispatcher(LIST_REVIEW);
         request.setAttribute("review", reviewDAO.getAllReviews(tenantID));
         view.forward(request, response);

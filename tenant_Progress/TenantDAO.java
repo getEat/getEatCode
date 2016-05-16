@@ -1,7 +1,3 @@
-package Controller;
-
-
-import Model.Tenant;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,17 +20,17 @@ public class TenantDAO {
    
     
     public TenantDAO() {
-         conn = koneksi.open();
+         conn = DbConnection.open();
     }
 
     public void updateTenant(Tenant tenant){
         try{
             PreparedStatement preparedStatement = conn.prepareStatement("update tenant set Nama=?, alamatTempatMakan=?, username=?, password=?, Owner=?" +
-                            "where tenantid=?");
+                            "where idtenant=?");
             // Parameters start with 1
             preparedStatement.setString(1, tenant.getNama());
             preparedStatement.setString(2, tenant.getAlamatTempatMakan());
-            preparedStatement.setString(3, tenant.getUserName());
+            preparedStatement.setString(3, tenant.getUsername());
             preparedStatement.setString(4, tenant.getPassword());
             preparedStatement.setString(5, tenant.getIdTenant());
             preparedStatement.executeUpdate();
@@ -46,7 +42,7 @@ public class TenantDAO {
     
 
     public List<Tenant> getAllTenants() {
-        List<Tenant> dataTenant = new ArrayList<Tenant>();
+        List<Tenant> Tenants = new ArrayList<Tenant>();
         try {
             Statement statement1 = conn.createStatement();
             ResultSet resultSet = statement1.executeQuery("SELECT * FROM tenant");
@@ -56,16 +52,16 @@ public class TenantDAO {
                 ten.setIdTenant(resultSet.getString("idtenant"));
                 ten.setNama(resultSet.getString("Nama"));
                 ten.setAlamatTempatMakan(resultSet.getString("alamatTempatMakan"));
-                ten.setUserName(resultSet.getString("username"));
+                ten.setUsername(resultSet.getString("username"));
                 ten.setPassword(resultSet.getString("password"));
                 ten.setOwner(resultSet.getString("Owner"));
 //                
-                dataTenant.add(ten);
+                Tenants.add(ten);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return dataTenant;
+        return Tenants;
     }
     
     public Tenant getTenantById(String tenantId) {
@@ -80,7 +76,7 @@ public class TenantDAO {
                 tenant.setIdTenant(rs.getString("idtenant"));
                 tenant.setNama(rs.getString("Nama"));
                 tenant.setAlamatTempatMakan(rs.getString("alamatTempatMakan"));
-                tenant.setUserName(rs.getString("username"));
+                tenant.setUsername(rs.getString("username"));
                 tenant.setPassword(rs.getString("password"));
                 tenant.setOwner(rs.getString("Owner"));
                

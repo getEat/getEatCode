@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
 
-import Model.Review;
-import Model.Tenant;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,11 +21,11 @@ public class ReviewDAO {
     private Connection conn;
    
     public ReviewDAO(){
-        conn = koneksi.open();
+        conn = DbConnection.open();
     }
     
     public List<Review> getAllReviews(String tenantId) {
-        List<Review> dataReview = new ArrayList<Review>();
+        List<Review> review = new ArrayList<Review>();
         try {
             PreparedStatement preparedStatement = conn.
                     prepareStatement("select * from review where idtenant=?");
@@ -37,18 +35,18 @@ public class ReviewDAO {
                 Review rev = new Review();
                 Tenant te = new Tenant();
                 
-                rev.setId_review(rs.getString("idReview"));
-                te.setIdTenant(rs.getString("idtenant"));
+                rev.setIdReview(rs.getString("idReview"));
+                rev.setIdtenant(rs.getString("idtenant"));
                 rev.setUseful(rs.getInt("useful"));
                 rev.setFunny(rs.getInt("Funny"));
                 rev.setComment(rs.getString("Comment"));
                 rev.setStatus(rs.getString("Status"));
 //                
-                dataReview.add(rev);
+                review.add(rev);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return dataReview;
+        return review;
     }
 }

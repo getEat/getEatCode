@@ -6,30 +6,26 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
         <title>GetEat!</title>
-        <link href="css/styleProfile.css" rel="stylesheet" type="text/css" media="all"/>
-        
+        <link href="css/styleProfile.css" rel="stylesheet" type="text/css" media="all"/> 
         <link href="css/styleMenu.css" rel="stylesheet" type="text/css" media="all"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="keywords" content="Food and Drink Ui Kit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
         <link href="css/style.css" rel='stylesheet' type='text/css' />
         <link href="css/table.css" rel='stylesheet' type='text/css' />
-        <script src="js/jquery.min.js"></script>
-         
-        <!--Calender-->
-        <link rel="stylesheet" href="css/clndr.css" type="text/css" />
+<!--        <script src="js/jquery.min.js"></script>-->
         
-        <script src="js/underscore-min.js"></script>
+<!--        <script src="js/underscore-min.js"></script>
         <script src= "js/moment-2.2.1.js"></script>
         <script src="js/clndr.js"></script>
-        <script src="js/site.js"></script>
+        <script src="js/site.js"></script>-->
        
         <!--End Calender-->
     </head>
@@ -90,14 +86,42 @@
 
 
 <!-- Description -->
-<h1 class="description">
-  Responsive table with json data.
-</h1>
+<h3 class="description">
+  <table border=1>
+        <thead>
+            <tr>
+                <th>Review Id</th>
+                <th>Tenant Id</th>
+                <th>useful</th>
+                <th>Funny</th>
+                <th>Comment</th>
+                <th>Status</th>
+                
+                <th colspan=2>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${review}" var="rev">
+                <tr>
+                    
+                    
+                    <td><c:out value="${rev.idReview}" /></td>
+                    <td><c:out value="${rev.idtenant}" /></td>
+                    <td><c:out value="${rev.useful}" /></td>
+                    <td><c:out value="${rev.funny}" /></td>
+                    <td><c:out value="${rev.comment}" /></td>
+                    <td><c:out value="${rev.status}" /></td>
+                   <td><a href="tenantServlet?action=edit&idtenant=<c:out value="${rev.idtenant}"/>">Update</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</h3>
 
 <!-- Table demo -->
-<div class="box-table">
+<!--<div class="box-table">
 <script src="js/table.js"></script>
-</div>
+</div>-->
 
 
 

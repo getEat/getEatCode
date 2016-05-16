@@ -1,38 +1,28 @@
-package Model;
+
 
 public class Review {
 
-    private String id_review;
-    private String comment;
+    private String idReview;
+    private String idtenant;
     private int useful;
-    private int funny;
-    private String status;
-    /**
-     * @return the id_review
-     */
-    public String getId_review() {
-        return id_review;
+    private int Funny;
+    private String Comment;
+    private String Status;
+
+    public String getIdReview() {
+        return idReview;
     }
 
-    /**
-     * @param id_review the id_review to set
-     */
-    public void setId_review(String id_review) {
-        this.id_review = id_review;
+    public void setIdReview(String idReview) {
+        this.idReview = idReview;
     }
 
-    /**
-     * @return the comment
-     */
-    public String getComment() {
-        return comment;
+    public String getIdtenant() {
+        return idtenant;
     }
 
-    /**
-     * @param comment the comment to set
-     */
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setIdtenant(String idtenant) {
+        this.idtenant = idtenant;
     }
 
     public int getUseful() {
@@ -44,18 +34,29 @@ public class Review {
     }
 
     public int getFunny() {
-        return funny;
+        return Funny;
     }
 
-    public void setFunny(int funny) {
-        this.funny = funny;
+    public void setFunny(int Funny) {
+        this.Funny = Funny;
+    }
+
+    public String getComment() {
+        return Comment;
+    }
+
+    public void setComment(String Comment) {
+        this.Comment = Comment;
     }
 
     public String getStatus() {
-        return status;
+        return Status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(String Status) {
+        this.Status = Status;
     }
-}
+    
+
+   
+   }
