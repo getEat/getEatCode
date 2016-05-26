@@ -87,7 +87,7 @@ ul.sub li a {
 	padding: 0.2em;
 }
 ul.sub li a:hover{
-	color:#8bc058;
+	color:#fff;
 }
 ul.sub1{
 	top: 25% !important;
@@ -171,7 +171,7 @@ span.menu {
 .head-text h1{
     font-size: 32px;
     font-weight: 600;
-    color: #00f0f0;
+    color: #fff;
     text-align: center;
     margin: 0;
     font-family: 'Montserrat-Regular';
@@ -182,7 +182,7 @@ span.menu {
 }
 #img { cursor:pointer; }
 p.rew{
-    color:#999;
+    color:#fff;
     font-size:15px;
     line-height:1.8em;
     margin-top:20px;
@@ -193,7 +193,7 @@ p.rew span{
 p.rew a {
     padding: 5px 12px;
     color: #fff;
-    background: #00f0f0;
+    background: #fff;
     font-size: 13px;
     margin: 0 8px;
 }
@@ -426,6 +426,9 @@ h2.resp-accordion:hover{
     }
 }
 @media(max-width:1366px){
+    .head-text h1{
+        color:white;
+    }
     .footer {
         margin-top: 29%;
     }

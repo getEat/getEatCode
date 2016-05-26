@@ -253,7 +253,7 @@ ul.sub4 {
     -ms-border-radius: 5px;
 }
 .meal-right {
-    width: 33.3%;
+    /*width: 33.3%;*/
     float: left;
     padding-right: 18px;
     position: relative;

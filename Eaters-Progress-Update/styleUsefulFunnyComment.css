@@ -249,7 +249,7 @@ ul.sub4 {
     -ms-border-radius: 5px;
 }
 .meal-right {
-    width: 33.3%;
+    /*width: 33.3%;*/
     float: left;
     padding-right: 18px;
     position: relative;
@@ -744,7 +744,7 @@ ul.sub4 {
     -ms-border-bottom-left-radius: 4px;
 }
 .berger-sidetwo span{
-    background:url(../images/star.png) no-repeat;
+    background:url(../images/like.png) no-repeat;
     width:20px;
     height:20px;
     display:inline-block;
@@ -775,7 +775,7 @@ ul.sub4 {
     -ms-border-bottom-left-radius: 4px;
 }
 .berger-sidethree span{
-    background:url(../images/star.png) no-repeat;
+    background:url(../images/dislike.png) no-repeat;
     width:20px;
     height:20px;
     display:inline-block;
@@ -1532,6 +1532,73 @@ h5.name {
     }
     ul.sub {
         left: 75%;
+    }
+}
+@media (max-width:1920px){
+    .menu-top a {
+        padding: 21% 0;
+    }
+    .sky-form .radio {
+        font-size: 14px;
+        margin-bottom: 1px;
+    }
+    .sky-form {
+        margin-top: 7%;
+    }
+    ul.sub {
+        left: 98%;
+        top:10%;
+    }
+    ul.sub4 {
+        left: 15% !important;
+    }
+    .fresh-middle {
+        padding: 0 3px;
+    }	
+    .o-btn {
+        margin-top: 7%;
+    }
+    .m-btn {
+        margin-top: 5%;
+    }
+    .n-btn {
+        margin-top: 69%;
+    }
+    .berger-side {
+        right: 4.5%;
+    }
+    .berger-sidetwo {
+        right: 4.5%;
+    }
+    .berger-sidethree {
+        right: 4.5%;
+    }
+    .c-bottom h4 {
+        font-size: 22px;
+    }
+    ul.unit {
+        padding: 0px 10px 9px 10px;
+    }
+    .c-top h3 {
+        margin: 62% 0 0 0;
+    }
+    .c-btn {
+        margin-top: 58%;
+    }
+    .j1 h3 {
+        width: 70%;
+    }
+    .juice img {
+        height: 263px;
+    }
+    .j1 {
+        top: 24%;
+        left: 61%;
+    }
+    .quantity-select .entry {
+        height: 20px;
+        width: 20px;
+        font-size: 16px;
     }
 }
 @media (max-width:1366px){
