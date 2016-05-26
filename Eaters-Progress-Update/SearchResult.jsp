@@ -1,3 +1,9 @@
+<%-- 
+    Document   : SearchResult
+    Created on : May 21, 2016, 12:58:20 AM
+    Author     : Jonathan
+--%>
+
 <%@page import="Connection.DatabaseConnection"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -6,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GetEat! | Home</title>
+        <title>GetEat! | Search Result</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Food and Drink Ui Kit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -79,23 +85,23 @@
                                 <div class="banner-bottom">
                                     <div class="container">
                                         <div class="droop-down">
-                                            <form action="SearchResult.jsp">
+                                            <form action="SearchResult.jsp" method="post">
                                                 <div class="col-md-3 droop">
                                                     <div class="sort-by">
                                                         <label>City</label>
-                                                        <input type="text" name="city" id="city" placeholder="Restaurant Location...">
+                                                        <input type="text" name="city" placeholder="Restaurant Location...">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 droop">
                                                     <div class="sort-by">
                                                         <label>Name</label>
-                                                        <input type="text" name="tenantname" id="tenantname" placeholder="Restaurant Name...">
+                                                        <input type="text" name="tenantname" placeholder="Restaurant Name...">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 droop">
                                                     <div class="sort-by">
                                                         <label>Food</label>
-                                                        <input type="text" name="kategori" id="kategori" placeholder="Food Category...">
+                                                        <input type="text" name="kategori" placeholder="Food Category...">
                                                         <!--                                                    <select>
                                                                                                                 <option value="">
                                                                                                                     Sushi              </option>
@@ -127,13 +133,46 @@
                                             <%
                                                 int counter = 1;
                                                 Connection conn = DatabaseConnection.getDBConnection();
-                                                ResultSet result;
                                                 Statement statement = conn.createStatement();
+                                                String city = request.getParameter("city");
+                                                String tenantname = request.getParameter("tenantname");
+                                                String kategori = request.getParameter("kategori");
+                                                String query = "";
 
-                                                String que1 = "select * from review";
-                                                ResultSet res = statement.executeQuery(que1);
-                                                while (res.next()) {
+                                                if (tenantname == "" && kategori == "") {
+                                                    query = "select * from review where city='" + city + "'";
+                                                }
+                                                if (city == "" && kategori == "") {
+                                                    query = "select * from review where namatenant='" + tenantname + "'";
+                                                }
+                                                if (city == "" && tenantname == "") {
+                                                    query = "select * from review where kategori='" + kategori + "'";
+                                                }
 
+                                                if (tenantname != "" && city != "") {
+                                                    query = "select * from review where namatenant='" + tenantname
+                                                            + "' and city='" + city + "' or kategori='" + kategori + "'";
+                                                }
+                                                if (city != "" && kategori != "") {
+                                                    query = "select * from review where namatenant='" + tenantname + "' or kategori='" + kategori
+                                                            + "' and city='" + city + "'";
+                                                }
+                                                if (tenantname != "" && kategori != "") {
+                                                    query = "select * from review where namatenant='" + tenantname
+                                                            + "' and kategori='" + kategori + "' or city='" + city + "'";
+                                                }
+                                                if (tenantname != "" && kategori != "" && city != "") {
+                                                    query = "select * from review where namatenant='" + tenantname
+                                                            + "' and kategori='" + kategori + "' and city='" + city + "'";
+                                                }
+                                                ResultSet res = statement.executeQuery(query);
+                                                if (!res.isBeforeFirst()) {%>
+                                            <div align="center">
+                                                <h1><font color="white">The review you've searched is not found</font></h1>
+                                            </div>
+                                            <%}%>
+
+                                            <%while (res.next()) {
                                                     if (counter == 1) {
                                             %>
 
@@ -181,15 +220,17 @@
                                                                 <li>
                                                                     <div align ="center" class="br1">
                                                                         <!-- <h4>1</h4> -->
-                                                                        <p><a href="tenantServlet?action=view&idtenant=<%=res.getString("idtenant")%>" target="_blank">Go to Profile Tenant</a></p>	<!-- memanggil atribut dari class tenant yang reviewnya diklik -->			
+                                                                        <p><a href="Halaman_Profil_Tenant.jsp" target="_blank">Go to Profile Tenant</a></p>	<!-- memanggil atribut dari class tenant yang reviewnya diklik -->			
                                                                     </div>
                                                                 </li>
                                                             </div>
                                                             <div class="clearfix"> </div>
                                                         </div>
-                                                        <br>
                                                     </div>
+
                                                     <%}%>
+
+
 
                                                 </div>
 

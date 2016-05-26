@@ -4,7 +4,11 @@
     Author     : Jonathan
 --%>
 
-<%@page import="DAO.ReviewDAO"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="Connection.DatabaseConnection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="Controller.ReviewDAO"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,7 +35,7 @@
         <div class="content">
             <div class="wrap">
                 <div class="content-head">
-                    <h1>GetEat!</h1>
+               <h1><a href="HomeEaters.jsp">GetEat!</a></h1>
                     <div class="fresh-left">
                         <ul>
                             <li>
@@ -39,28 +43,30 @@
                                     <a href="#"><%=session.getAttribute("Username")%><span class="one"></span></a>
                                     <ul class="sub">
                                         <li><a href="UpdateProfile.jsp">My Profile</a></li>
-                                        <li><a href="LogoutServlet">Logout</a></li>	
+                                        <li><a href="logout.jsp">Logout</a></li>	
                                     </ul>
                                 </div>
                             </li>
                             <li>
                                 </div>
                                 </div>
+                                    <br>
+                                    <br>
 
 
-                                <div class="banner ban1">
+<!--                                <div class="banner ban1">
                                     <div class="container">
                                         <div align="center" class="top-menu">
                                             <span class="menu"> alt=""/> </span>
                                             <ul>
                                                 <li><a href="HomeEaters.jsp">home</a></li>
-                                                <li><a href="about.html">about</a></li><!-- memberikan detail informasi GetEat! -->
+                                                <li><a href="about.html">about</a></li> memberikan detail informasi GetEat! 
                                                 <li><a href="menu.html">menus</a></li>
                                                 <li><a href="gallery.html">gallery</a></li>
-                                                <li><a href="events.html">discount</a></li><!-- akan memanggil halaman berisi promo atau discount tenant -->
+                                                <li><a href="events.html">discount</a></li> akan memanggil halaman berisi promo atau discount tenant 
                                                 <li><a href="contact.html">contact</a></li>
                                             </ul>
-                                            <!-- script for menu -->
+                                             script for menu 
 
                                             <script>
                                                 $("span.menu").click(function () {
@@ -68,53 +74,52 @@
                                                     });
                                                 });
                                             </script>
-                                            <!-- //script for menu -->
+                                             //script for menu 
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
 
                                 <div class="content-main">
                                     <div class="content-left">
 
                                         <div class="meal">
+                                            <%
+
+                                                Connection conn = DatabaseConnection.getDBConnection();
+                                                ResultSet result;
+                                                Statement statement = conn.createStatement();
+
+                                                String que1 = "select * from review where idReview='" + session.getAttribute("id") + "'";
+                                                ResultSet res = statement.executeQuery(que1);
+                                                while (res.next()) {
+
+
+                                            %>
                                             <div class="meal-left">
-                                                <img src="images/berger-banner.jpg" alt="" />
+                                                <img src="<%=res.getString("Image")%>" alt="" />
                                                 <div class="berger-top">
-                                                    <h3>Mystery Box Burger</h3>
-                                                    <p>Step by step recipe</p>
-                                                    <span>- 20 min</span>
+                                                    <h3><%=res.getString("Reviewer")%></h3>
+                                                    <p>FOODHUNTER</p>
+                                                    <span><%=res.getString("Namatenant")%></span>
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <p>                  
-                                                        <% ReviewDAO rdao = new ReviewDAO();%>
-                                                        <%=rdao.getRating("1111")%>
+                                                    <td><p><%=res.getString("rating")%></td>
                                                     </p>
                                                 </div>
                                                 <div class="berger-sidetwo">
                                                     <a href="#"><span></span></a>
                                                     <p>
-                                                    <td><%=rdao.getUseful("1111")%></td>
+                                                    <td><%=res.getString("useful")%></td>
                                                     </p>
                                                 </div>
                                                 <div class="berger-sidethree">
                                                     <a href="#"><span></span></a>
                                                     <p>
-                                                    <td><%=rdao.getFunny("1111")%></td>
+                                                    <td><%=res.getString("funny")%></td>
                                                     </p>
-                                                </div>
-                                                <div class="berger">
-                                                    <div class="callbacks_container">
-                                                        <li>
-                                                            <div align ="center" class="br1">
-                                                                <!-- <h4>1</h4> -->
-                                                                <p>Go to Profile Tenant</p>								
-                                                            </div>
-                                                        </li>
-                                                    </div>
-                                                    <div class="clearfix"> </div>
                                                 </div>
 
                                                 <br>
@@ -126,12 +131,7 @@
                                                 <table border="0" align="center">
                                                     <tr>
                                                         <td>
-                                                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa        
+                                                            <%=res.getString("REVIEWDETAIL")%> 
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -140,13 +140,13 @@
 
                                             <div class="meal-right">
                                                 <div id="comment_form">
-
-                                                    <form action="ReportServlet" method="post">
+                                                    <% HttpSession s = request.getSession(true); %>
+                                                    <form action="ReportServlet?id=<%=s.getAttribute("id")%>" method="post">
                                                         <div>
                                                             <textarea rows="10" name="report" id="report" placeholder="Report Details"></textarea>
                                                             <!-- memberi nilai atribut comment pada id_review tersebut  -->
                                                         </div>
-                                                        <div>
+                                                        <div align="right">
                                                             <input type="submit" name="submit" value="Report">
                                                             <!-- menyimpan comment yang diketik eaters pada review tersebut pada database-->
                                                             <!--<input type="submit" name="submit" value="Report">-->
@@ -155,6 +155,7 @@
                                                     </form>
                                                 </div>
                                             </div>
+                                            <%}%>
                                         </div>
                                     </div>
                                 </div>
@@ -190,9 +191,9 @@
                                 <!--Slider-Starts-Here-->
                                 <script src="js/responsiveslides.min.js"></script>
                                 <script>
-                                // You can also use "$(window).load(function() {"
+                                    // You can also use "$(window).load(function() {"
                                     $(function () {
-                                // Slideshow 4
+                                        // Slideshow 4
                                         $("#slider4").responsiveSlides({
                                             auto: true,
                                             pager: false,

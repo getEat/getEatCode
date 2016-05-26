@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.EatersDAO;
-import DAO.MemberDAO;
+import Controller.EatersDAO;
+import Controller.MemberDAO;
 import Model.Eaters;
 import Model.Member;
 import java.io.IOException;
@@ -15,10 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
 /**
  *
  * @author Jonathan
@@ -102,9 +103,9 @@ public class RegisterServlet extends HttpServlet {
                 ea.setEmail(email);
                 m.setUserName(username);
                 m.setPassword(password);
-                dao.addEaters(ea);
                 mdao.addEaters(m);
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login.jsp");
+                dao.addEaters(ea,m);               
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login.html");
                 dispatcher.forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);

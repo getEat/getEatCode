@@ -11,18 +11,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet(name = "RatingServlet", urlPatterns = {"/RatingServlet"})
+import javax.servlet.http.HttpSession;
+import org.apache.jasper.Constants;
+
+@WebServlet(name = "CommentServlet", urlPatterns = {"/CommentServlet"})
 /**
  *
  * @author Jonathan
  */
-public class RatingServlet extends HttpServlet {
+public class CommentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,19 +37,7 @@ public class RatingServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        ReviewDAO rdao = new ReviewDAO();
-        Review r = new Review();
-        try {
-             r.setIdReview(request.getParameter("id"));
-            rdao.addRating(r);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Rating&Comment.jsp");
-            dispatcher.forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(CommentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        out.print("sukses");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +52,7 @@ public class RatingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**
@@ -76,7 +66,22 @@ public class RatingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("qweqeqweqeq");
+        ReviewDAO rdao = new ReviewDAO();
+        Review r = new Review();
+        HttpSession s = request.getSession(true);
+        try {
+            r.setIdReview((String)s.getAttribute("id"));
+            r.setComment(request.getParameter("comment"));
+            rdao.addComment(r);
+            response.sendRedirect("Rating&Comment.jsp?id="+r.getIdReview());
+        } catch (Exception ex) {
+            Logger.getLogger(CommentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        out.print(r.getComment());
+        out.print("sukses");
     }
 
     /**

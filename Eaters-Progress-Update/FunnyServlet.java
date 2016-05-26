@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import DAO.ReviewDAO;
+import Controller.ReviewDAO;
 import Model.Review;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,10 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@WebServlet(name = "FunnyServlet", urlPatterns = {"/FunnyServlet"})
 /**
  *
  * @author Jonathan
@@ -39,6 +40,7 @@ public class FunnyServlet extends HttpServlet {
         ReviewDAO rdao = new ReviewDAO();
         Review r = new Review();
         try {
+             r.setIdReview(request.getParameter("id"));
             rdao.addFunny(r);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Rating&Comment.jsp");
             dispatcher.forward(request, response);

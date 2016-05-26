@@ -34,7 +34,7 @@
             </div>
             <div class="content3">
                 <p>You must input a value for all of the fields</p>
-                <a href="Register.jsp">Back to Register</a>
+                <a href="Halaman_Register_Eaters.jsp">Back to Register</a>
             </div>
 
         </div>

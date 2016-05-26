@@ -1,10 +1,10 @@
-package DAO;
+package Controller;
 
 /**
  *
  * @author Jonathan
  */
-import Koneksi.DBConnection;
+import Connection.DatabaseConnection;
 import Model.Eaters;
 import Model.Review;
 import Model.Member;
@@ -30,15 +30,15 @@ public class EatersDAO {
     private final String addReport = "INSERT INTO report (id_review) VALUES (?)";
     private final String editProfile = "UPDATE eaters SET Nama=?,alamat=?,email=? WHERE nama=jonathan";
     String kode = "EA";
-    Connection conn = Koneksi.koneksi.open();
+    Connection conn = DatabaseConnection.getDBConnection();
     ResultSet result;
 
     public EatersDAO() {
     }
 
-    public void addEaters(Eaters eaters) throws Exception {
-        String sql = "insert into EATERS (Nama, alamat, email) "
-                + "values('" + eaters.getNama() + "','" + eaters.getAlamat() + "','" + eaters.getEmail() + "')";
+    public void addEaters(Eaters eaters, Member member) throws Exception {
+        String sql = "INSERT INTO eaters(idMember, Nama, alamat, email)"
+                + " VALUES ((SELECT idMember from member where userName='"+member.getUserName()+"'),'" + eaters.getNama() + "','" + eaters.getAlamat() + "','" + eaters.getEmail() + "')";
         Statement stat = conn.createStatement();
         stat.executeUpdate(sql);
         conn.close();
@@ -49,13 +49,14 @@ public class EatersDAO {
         return "E" + String.valueOf((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
     }
 
-    public void editProfile(Eaters eaters) {
+    public void editProfile(Eaters eaters, Member member) {
         PreparedStatement preparedstatement;
         try {
-            preparedstatement = conn.prepareStatement("update EATERS set Nama=?, alamat=?, email=? where Nama='tom'");
+            preparedstatement = conn.prepareStatement("update EATERS set Nama=?, alamat=?, email=? where idMember=?");
             preparedstatement.setString(1, eaters.getNama());
             preparedstatement.setString(2, eaters.getAlamat());
             preparedstatement.setString(3, eaters.getEmail());
+            preparedstatement.setString(4, member.getIdMember());
             preparedstatement.executeUpdate();
             conn.close();
         } catch (SQLException ex) {

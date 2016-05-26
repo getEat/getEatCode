@@ -5,17 +5,18 @@
  */
 package Controller;
 
-import DAO.ReviewDAO;
+import Controller.ReviewDAO;
 import Model.Review;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@WebServlet(name = "ReportServlet", urlPatterns = {"/ReportServlet"})
 /**
  *
  * @author Jonathan
@@ -80,9 +81,11 @@ public class ReportServlet extends HttpServlet {
         ReviewDAO rdao = new ReviewDAO();
         Review r = new Review();
         try {
-            r.setReportDetails((String) request.getParameter("report"));
-            r.setStatus("Reported");
+            r.setIdReview(request.getParameter("id"));
+            r.setReportDetails(request.getParameter("report"));
+            r.setStatus("REPORTED");
             rdao.Report(r);
+            response.sendRedirect("Report.jsp");
         } catch (Exception ex) {
             Logger.getLogger(CommentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

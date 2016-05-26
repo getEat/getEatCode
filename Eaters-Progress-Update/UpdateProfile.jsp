@@ -1,3 +1,13 @@
+<%@page import="Connection.DatabaseConnection"%>
+<%@page import="Model.Member"%>
+<%@page import="Model.Eaters"%>
+<%@page import="Controller.UpdateProfileServlet"%>
+<%@page import="java.util.logging.Level"%>
+<%@page import="java.util.logging.Logger"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -17,24 +27,58 @@
         <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
+        <%
+            Connection conn = DatabaseConnection.getDBConnection();
+            Eaters e = new Eaters();
+            Member m = new Member();
+            String user = (String) session.getAttribute("Username");
+            try {
+                String sqla = "select * from member where userName='" + user + "'";
+                Statement stmt0 = conn.createStatement();
+                ResultSet rs0 = stmt0.executeQuery(sqla);
+                while (rs0.next()) {
+                    m.setIdMember(rs0.getString("idMember"));
+                }
+                String sql = "select * from member where idMember='" + m.getIdMember() + "'";
+                Statement stmt1 = conn.createStatement();
+                ResultSet rs = stmt1.executeQuery(sql);
+                while (rs.next()) {
+                    m.setUserName(rs.getString("userName"));
+                    m.setPassword(rs.getString("password"));
+                }
+                String sql2 = "select * from eaters where idMember='" + m.getIdMember() + "'";
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery(sql2);
+                while (rs2.next()) {
+                    e.setNama(rs2.getString("Nama"));
+                    e.setAlamat(rs2.getString("alamat"));
+                    e.setEmail(rs2.getString("email"));
+                }
+                HttpSession se = request.getSession(true);
+                se.setAttribute("id", m.getIdMember());
+            } catch (SQLException ex) {
+                Logger.getLogger(UpdateProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        %>
         <div class="head">
             <div class="head-text">
-                <h1>Profile</h1>
+              <h1><a href="HomeEaters.jsp">GetEat!</a></h1>
             </div>
-
-            <div class="banner ban1">
+            <br>
+            <br>
+<!--            <div class="banner ban1">
                 <div class="container">
                     <div align="center" class="top-menu">
                         <span class="menu"> alt=""/> </span>
                         <ul>
                             <li><a href="HomeEaters.jsp">home</a></li>
-                            <li><a href="about.html">about</a></li><!-- memberikan detail informasi GetEat! -->
+                            <li><a href="about.html">about</a></li> memberikan detail informasi GetEat! 
                             <li><a href="menu.html">menus</a></li>
                             <li><a href="gallery.html">gallery</a></li>
-                            <li><a href="events.html">discount</a></li><!-- akan memanggil halaman berisi promo atau discount tenant -->
+                            <li><a href="events.html">discount</a></li> akan memanggil halaman berisi promo atau discount tenant 
                             <li><a href="contact.html">contact</a></li>
                         </ul>
-                        <!-- script for menu -->
+                         script for menu 
 
                         <script>
                             $("span.menu").click(function () {
@@ -42,11 +86,11 @@
                                 });
                             });
                         </script>
-                        <!-- //script for menu -->
+                         //script for menu 
 
                     </div>
                 </div>
-            </div>
+            </div>-->
 
 
             <div class="login">
@@ -56,18 +100,12 @@
                         <div class="text-left">
                             <h2><%=session.getAttribute("Username")%></h2>
                             <p>EATERS</p>
-                            <h4><a href="LogoutServlet">Logout</a></h4>	
+                            <h4><a href="logout.jsp">Logout</a></h4>	
                         </div>
                     </div>
                 </div>
                 <div class="sap_tabs">	
                     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-                        <ul class="resp-tabs-list">
-                            <li class="resp-tab-item  item" aria-controls="tab_item-0" role="tab"><i class="tre"> </i><span>Reviews</span></li>
-                            <li class="resp-tab-item item" aria-controls="tab_item-1" role="tab"><i class="two"> </i><span> Followers</span></li>
-                            <li class="resp-tab-item item item1" aria-controls="tab_item-2" role="tab"><i class="one"> </i><span>Gallery</span></li>
-                            <div class="clearfix"></div>
-                        </ul>				  	 
                         <div class="resp-tabs-container">
                             <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>Product Description</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
                                 <div class="facts">
@@ -75,19 +113,24 @@
                                         <!-- Edit profile yang nantinya setelah klik tombol Edit akan mengubah profile Eaters tersebut di database -->
                                         <div class="review-top" align="center">
                                             <form action="UpdateProfileServlet" method="post">
-                                                <input type="text" placeholder="Nama" id="Nama" name="Nama" style="width:500px">
+                                                <h4>Nama</h4>
+                                                <input type="text" value="<%=e.getNama()%>" id="Nama" name="Nama" style="width:500px">
                                                 <br>
                                                 <br>
-                                                <input type="text" placeholder="Alamat" id="Alamat" name="Alamat" style="width:500px">
+                                                <h4>Alamat</h4>
+                                                <input type="text" value="<%=e.getAlamat()%>" id="Alamat" name="Alamat" style="width:500px">
                                                 <br>
                                                 <br>
-                                                <input type="text" placeholder="Email" id="Email" name="Email" style="width:500px">
+                                                <h4>Email</h4>
+                                                <input type="text" value="<%=e.getEmail()%>" id="Email" name="Email" style="width:500px">
                                                 <br>
                                                 <br>
-                                                <input type="text" placeholder="Username" id="Username" name="username" style="width:500px">
+                                                <h4>Username</h4>
+                                                <input type="text" value="<%=m.getUserName()%>" id="Username" name="Username" style="width:500px">
                                                 <br>
                                                 <br>
-                                                <input type="text" placeholder="Password" id="Password" name="password" style="width:500px">
+                                                <h4>Password</h4>
+                                                <input type="text" value="<%=m.getPassword()%>" id="Password" name="Password" style="width:500px">
                                                 <br>
                                                 <br>
                                                 <input type="submit" name="Update" value="Update">
