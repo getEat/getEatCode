@@ -9,7 +9,7 @@ public class Review {
     private String idReview;
     private int useful;
     private int Funny;
-    private int Rating;
+    private Double Rating;
     private String Comment;
     private String Status;
     private String ReportDetails;
@@ -26,7 +26,7 @@ public class Review {
     }
 
   
-    public Review(String idReview, int useful, int Funny, int Rating, String Comment, String Status, String ReportDetails) {
+    public Review(String idReview, int useful, int Funny, Double Rating, String Comment, String Status, String ReportDetails) {
         this.idReview = idReview;
         this.useful = useful;
         this.Funny = Funny;
@@ -81,14 +81,14 @@ public class Review {
     /**
      * @return the Rating
      */
-    public int getRating() {
+    public Double getRating() {
         return Rating;
     }
 
     /**
      * @param Rating the Rating to set
      */
-    public void setRating(int Rating) {
+    public void setRating(Double Rating) {
         this.Rating = Rating;
     }
 

@@ -62,36 +62,9 @@
         %>
         <div class="head">
             <div class="head-text">
-              <h1><a href="HomeEaters.jsp">GetEat!</a></h1>
+                <h1><a href="HomeEaters.jsp">GetEat!</a></h1></font>
             </div>
-            <br>
-            <br>
-<!--            <div class="banner ban1">
-                <div class="container">
-                    <div align="center" class="top-menu">
-                        <span class="menu"> alt=""/> </span>
-                        <ul>
-                            <li><a href="HomeEaters.jsp">home</a></li>
-                            <li><a href="about.html">about</a></li> memberikan detail informasi GetEat! 
-                            <li><a href="menu.html">menus</a></li>
-                            <li><a href="gallery.html">gallery</a></li>
-                            <li><a href="events.html">discount</a></li> akan memanggil halaman berisi promo atau discount tenant 
-                            <li><a href="contact.html">contact</a></li>
-                        </ul>
-                         script for menu 
-
-                        <script>
-                            $("span.menu").click(function () {
-                                $(".top-menu ul").slideToggle("slow", function () {
-                                });
-                            });
-                        </script>
-                         //script for menu 
-
-                    </div>
-                </div>
-            </div>-->
-
+        </div>
 
             <div class="login">
                 <div class="header">

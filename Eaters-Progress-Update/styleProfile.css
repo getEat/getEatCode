@@ -23,7 +23,7 @@ a{text-decoration:none;}
 .pos-absolute{position:absolute;}/* Position Absolute */
 .vertical-base{	vertical-align:baseline;}/* vertical align baseline */
 .vertical-top{	vertical-align:top;}/* vertical align top */
-.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #fff; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
 nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
@@ -46,54 +46,51 @@ body {
 
 }
 ul.sub{
-	/*border:1px solid #fff;*/
-	position:absolute;
-	left: 79%;
-	width: 118px;
-	background: #e9342c;
-	margin: 0;
-	opacity: 0;
-	visibility: hidden;
-	top: 33px;
-	z-index: 1;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
-	-ms-transition: all .2s ease-in-out;
-	-o-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
+    /*border:1px solid #fff;*/
+    position:absolute;
+    left: 79%;
+    width: 118px;
+    background: #e9342c;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    top: 33px;
+    z-index: 1;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 .menu-top:hover > ul {
-	opacity: 1;
-	visibility: visible;
-	margin: 0;
-	z-index: 9999;
-	text-align: center;
+    opacity: 1;
+    visibility: visible;
+    margin: 0;
+    z-index: 9999;
+    text-align: center;
 }
 ul.sub li {
     list-style: none;
-	display: block !important;
+    display: block !important;
     padding: 3px 0 !important;
-	/*border-bottom: 1px solid rgba(255, 255, 255, 0.25);*/
+    /*border-bottom: 1px solid rgba(255, 255, 255, 0.25);*/
 }
 ul.sub li:nth-child(4){
-	border-bottom:none !important;
+    border-bottom:none !important;
 }
 ul.sub li a {
-	display: inline-block;
-	color: #fff;
-	text-decoration: none;	
-	font-weight: 400;	
-	font-size: 0.8em;
-	padding: 0.2em;
-}
-ul.sub li a:hover{
-	color:#fff;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;	
+    font-weight: 400;	
+    font-size: 0.8em;
+    padding: 0.2em;
 }
 ul.sub1{
-	top: 25% !important;
+    top: 25% !important;
 }
 ul.sub2{
-	top: 51% !important;
+    top: 51% !important;
 }
 ul.sub3 {
     top: 77.5% !important;
@@ -101,69 +98,69 @@ ul.sub3 {
 ul.sub4 {
     top: 15.5% !important;
     left: 30%;
-	text-align: center;
+    text-align: center;
 }
 .menu-top a {
     display: block;
     padding: 25.5% 0;
 }
 .menu-top a span{
-	/*background:url(../images/menu-sprit.png) no-repeat;*/
-/*	width:100px;
-	height:20px;*/
-	/*display:block;*/
-	margin:0 auto;
+/*    background:url(../images/menu-sprit.png) no-repeat;
+    	width:100px;
+            height:20px;
+    display:block;*/
+    margin:0 auto;
 }
 .menu-top a span.one{
-	background-position:0px 0px;
+    background-position:0px 0px;
 }
 .menu-top a span.two{
-	background-position:-35px 0px;
+    background-position:-35px 0px;
 }
 .menu-top a span.tre{
-	background-position:-70px 0px;
+    background-position:-70px 0px;
 }
 .menu-top a span.fvr{
-	background-position:-105px 0px;
+    background-position:-105px 0px;
 }
 .menu-top a span.one:hover{
-	background-position:0px -35px;
+    background-position:0px -35px;
 }
 .menu-top a span.two:hover{
-	background-position:-35px -35px;
+    background-position:-35px -35px;
 }
 .menu-top a span.tre:hover{
-	background-position:-70px -35px;
+    background-position:-70px -35px;
 }
 .menu-top a span.fvr:hover{
-	background-position:-105px -35px;
+    background-position:-105px -35px;
 }
 .banner.ban1 {
-  min-height: 90px;
+    min-height: 90px;
 }
 .top-menu {
-  margin-top: 2em;
-  /*margin-right: 4em;*/
+    margin-top: 2em;
+    /*margin-right: 4em;*/
 }
 .top-menu ul li {
-  display: inline-block;
-  margin: 0.5em 2em;
+    display: inline-block;
+    margin: 0.5em 2em;
 }
 .top-menu ul li a {
-  font-size:1em;
-  color:#fff;
-  text-decoration:none;
-  text-transform: capitalize;
+    font-size:1em;
+    color:#fff;
+    text-decoration:none;
+    text-transform: capitalize;
     padding-bottom: 0.5em;
-  }
+}
 .top-menu ul li a:hover {
-  border-bottom: 5px solid #fff;
+    border-bottom: 5px solid #fff;
 }
 .top-menu ul li a.active {
-  border-bottom: 5px solid #fff;
+    border-bottom: 5px solid #fff;
 }
 span.menu {
-  display: none;
+    display: none;
 }
 .head {
     padding: 2em 0px 0em 0px;
@@ -256,7 +253,7 @@ p.rew a {
 }
 .review-text h4 {
     font-size: 18px;
-    color: #ba0c2f;
+    color: #fff;
 }
 .review-text p{
     font-size:15px;
@@ -281,7 +278,7 @@ li.right {
 li.right a {
     padding: 10px 20px;
     color: #fff;
-    background: #00f0f0;
+    background: #fff;
     font-size: 16px;
 }
 .gallery ul {
@@ -309,12 +306,12 @@ li.right a {
     padding-bottom: 20px;
 }
 .f1 h4 {
-    color: #00f0f0;
+    color: #fff;
     font-size: 20px;
     margin: 6px 0 4px 0;
 }
 .f1 p{
-    color:#999;
+    color:#fff;
     font-size:14px;
 }
 .footer {
@@ -323,13 +320,13 @@ li.right a {
 }
 .footer p{
     font-size:16px;
-    color:#00f0f0;
+    color:#fff;
 }
 .footer p a{
-    color:#00f0f0;
+    color:#fff;
 }
 .footer p a:hover{
-    color:#146eb4;
+    color:#fff;
 }
 /* start tabs */
 .resp-tabs-list {
@@ -404,12 +401,12 @@ h2.resp-accordion {
     font-size:1em;
     margin: 0px;
     padding: 10px 15px;
-    background:#f77462;
+    background:#fff;
     margin:10px 0;
     color:#fff;
 }
 h2.resp-accordion:hover{
-    background:#6CC5D9;
+    background:#fff;
     text-shadow: none;
     color: #FFF;
 }
@@ -498,6 +495,7 @@ h2.resp-accordion:hover{
 @media(max-width:768px){
     .head-text h1 {
         font-size: 27px;
+        color:white;
     }
     .sap_tabs {
         top: 62%;
@@ -634,7 +632,7 @@ h2.resp-accordion:hover{
         width: 27.51%;
     }
     .f1 p {
-        color: #999;
+        color: #fff;
         font-size: 13px;
     }
     .footer {
@@ -783,7 +781,7 @@ h2.resp-accordion:hover{
         margin: 0 4px;
     }
     p.rew {
-        color: #999;
+        color: #fff;
         margin-top: 13px;
     }
     .gallery {

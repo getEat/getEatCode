@@ -5,27 +5,20 @@
  */
 package Controller;
 
-import Controller.ReviewDAO;
-import Model.Review;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.apache.jasper.Constants;
 
-@WebServlet(name = "CommentServlet", urlPatterns = {"/CommentServlet"})
 /**
  *
  * @author Jonathan
  */
-public class CommentServlet extends HttpServlet {
-
+public class SearchServlet extends HttpServlet {
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,7 +30,33 @@ public class CommentServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String city = (String) request.getParameter("city");
+        String tenantname = (String) request.getParameter("tenantname");
+        String kategori = (String) request.getParameter("kategori");
+        String query="";
+        if (city == "") {
+            query = "select * from review where namatenant='" + tenantname
+                    + "' and kategori='" + kategori + "'";
+        } else if (tenantname == "") {
+            query = "select * from review where kategori='" + kategori
+                    + "' and city='" + city + "'";
+        } else if (kategori == "") {
+            query = "select * from review where namatenant='" + tenantname
+                    + "' and city='" + city + "'";
+        } else if (city == "" && tenantname == "") {
+            query = "select * from review where kategori='" + kategori + "'";
+        } else if (city == "" && kategori == "") {
+            query = "select * from review where namatenant='" + tenantname + "'";
+        } else if (tenantname == "" && kategori == "") {
+            query = "select * from review where city='" + city + "'";
+        } else {
+            query = "select * from review where namatenant='" + tenantname
+                    + "' and kategori='" + kategori + "' and city='" + city + "'";
+        }
+        ReviewDAO rdao = new ReviewDAO();
+        out.print(query);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +71,7 @@ public class CommentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**
@@ -66,22 +85,7 @@ public class CommentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("qweqeqweqeq");
-        ReviewDAO rdao = new ReviewDAO();
-        Review r = new Review();
-        HttpSession s = request.getSession(true);
-        try {
-            r.setIdReview((String)s.getAttribute("id"));
-            r.setComment(s.getAttribute("Username")+" : "+request.getParameter("comment"));
-            rdao.addComment(r);
-            response.sendRedirect("Rating&Comment.jsp?id="+r.getIdReview());
-        } catch (Exception ex) {
-            Logger.getLogger(CommentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        out.print(r.getComment());
-        out.print("sukses");
+        processRequest(request, response);
     }
 
     /**

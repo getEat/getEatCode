@@ -45,34 +45,34 @@
                             <li>
                                 </div>
                                 </div>
-                                    <br>
-                                    <br>
-<!--                                <div class="banner ban1">
-                                    <div class="container">
-                                        <div align="center" class="top-menu">
-                                            <span class="menu"> alt=""/> </span>
-                                            <ul>
-                                                <li><a href="HomeEaters.jsp">home</a></li>
-                                                <li><a href="about.html">about</a></li> memberikan detail informasi GetEat! 
-                                                <li><a href="menu.html">menus</a></li>
-                                                <li><a href="gallery.html">gallery</a></li>
-                                                <li><a href="events.html">discount</a></li> akan memanggil halaman berisi promo atau discount tenant 
-                                                <li><a href="contact.html">contact</a></li>
-                                            </ul>
-                                             script for menu 
-
-                                            <script>
-                                                $("span.menu").click(function () {
-                                                    $(".top-menu ul").slideToggle("slow", function () {
-                                                    });
-                                                });
-                                            </script>
-                                             //script for menu 
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>-->
+                                <br>
+                                <br>
+                                <!--                                <div class="banner ban1">
+                                                                    <div class="container">
+                                                                        <div align="center" class="top-menu">
+                                                                            <span class="menu"> alt=""/> </span>
+                                                                            <ul>
+                                                                                <li><a href="HomeEaters.jsp">home</a></li>
+                                                                                <li><a href="about.html">about</a></li> memberikan detail informasi GetEat! 
+                                                                                <li><a href="menu.html">menus</a></li>
+                                                                                <li><a href="gallery.html">gallery</a></li>
+                                                                                <li><a href="events.html">discount</a></li> akan memanggil halaman berisi promo atau discount tenant 
+                                                                                <li><a href="contact.html">contact</a></li>
+                                                                            </ul>
+                                                                             script for menu 
+                                
+                                                                            <script>
+                                                                                $("span.menu").click(function () {
+                                                                                    $(".top-menu ul").slideToggle("slow", function () {
+                                                                                    });
+                                                                                });
+                                                                            </script>
+                                                                             //script for menu 
+                                
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>-->
 
                                 <!--end-banner-->
                                 <!-- SEARCHING berdasarkan kota, nama tenant, nama menu -->
@@ -137,43 +137,46 @@
                                                     if (counter == 1) {
                                             %>
 
-                                            <div class="meal-left">
+                                            <div class="meal-left test1">
                                                 <%  counter = 2;
                                                 } else if (counter == 2) {
                                                 %>  
 
-                                                <div class="meal-middle">
+                                                <div class="meal-middle test1">
                                                     <%
                                                         counter = 3;
                                                     } else if (counter == 3) {
                                                     %>  
 
-                                                    <div class="meal-right">
+                                                    <div class="meal-right test1">
                                                         <%
                                                                 counter = 1;
                                                             }
                                                         %>
-                                                        <a href="Rating&Comment.jsp?id=<%=res.getString("idReview")%>"><img src="<%=res.getString("Image")%>"></a>
-                                                        <div class="berger-top">
-                                                            <h3><%=res.getString("Reviewer")%></h3>
-                                                            <p>FOODHUNTER</p>
-                                                            <span><%=res.getString("Namatenant")%></span>
-                                                        </div>
+                                                        <img src="<%=res.getString("Image")%>"></img>
+                                                        <a href="Rating&Comment.jsp?id=<%=res.getString("idReview")%>">
+                                                            <div class="textbox">
+                                                                <p>Posted by : </p>
+                                                                <h4><%=res.getString("Reviewer")%></h4>
+                                                                <p>FOODHUNTER</p>
+                                                                <p><%=res.getString("Namatenant")%></p>
+                                                            </div>
+                                                        </a>
                                                         <div class="berger-side">
                                                             <a href="#"><span></span></a>
-                                                            <p><%=res.getString("rating")%>
+                                                            <p><%=res.getDouble("rating")%>
                                                             </p>
                                                         </div>
                                                         <div class="berger-sidetwo">
                                                             <a href="#"><span></span></a>
                                                             <p>
-                                                            <td><%=res.getString("useful")%></td>
+                                                            <td><%=res.getInt("useful")%></td>
                                                             </p>
                                                         </div>
                                                         <div class="berger-sidethree">
                                                             <a href="#"><span></span></a>
                                                             <p>
-                                                            <td><%=res.getString("funny")%></td>
+                                                            <td><%=res.getInt("funny")%></td>
                                                             </p>
                                                         </div>
                                                         <div class="berger">

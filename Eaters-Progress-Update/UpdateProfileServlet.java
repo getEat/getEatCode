@@ -5,26 +5,27 @@
  */
 package Controller;
 
-import Controller.ReviewDAO;
-import Model.Review;
+import Controller.EatersDAO;
+import Controller.MemberDAO;
+import Model.Eaters;
+import Model.Member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.jasper.Constants;
-
-@WebServlet(name = "CommentServlet", urlPatterns = {"/CommentServlet"})
+@WebServlet(name = "UpdateProfileServlet", urlPatterns = {"/UpdateProfileServlet"})
 /**
  *
  * @author Jonathan
  */
-public class CommentServlet extends HttpServlet {
+public class UpdateProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,20 +69,31 @@ public class CommentServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("qweqeqweqeq");
-        ReviewDAO rdao = new ReviewDAO();
-        Review r = new Review();
+        EatersDAO edao = new EatersDAO();
+        MemberDAO mdao = new MemberDAO();
+        Eaters e = new Eaters();
+        Member m = new Member();
+        String nama = request.getParameter("Nama");
+        String alamat = request.getParameter("Alamat");
+        String email = request.getParameter("Email");
+        String username = request.getParameter("Username");
+        String password = request.getParameter("Password");
         HttpSession s = request.getSession(true);
+        String id = (String) s.getAttribute("id");
         try {
-            r.setIdReview((String)s.getAttribute("id"));
-            r.setComment(s.getAttribute("Username")+" : "+request.getParameter("comment"));
-            rdao.addComment(r);
-            response.sendRedirect("Rating&Comment.jsp?id="+r.getIdReview());
+            e.setNama(nama);
+            e.setAlamat(alamat);
+            e.setEmail(email);
+            m.setUserName(username);
+            m.setPassword(password);
+            m.setIdMember(id);
+            edao.editProfile(e, m);
+            mdao.editProfile(m);
+            s.setAttribute("Username", m.getUserName());
+            response.sendRedirect("UpdateProfile.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(CommentServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        out.print(r.getComment());
-        out.print("sukses");
     }
 
     /**

@@ -34,7 +34,7 @@
         <div class="content">
             <div class="wrap">
                 <div class="content-head">
-                     <h1><a href="HomeEaters.jsp">GetEat!</a></h1>
+                    <h1><a href="HomeEaters.jsp">GetEat!</a></h1>
                     <div class="fresh-left">
                         <ul>
                             <li>
@@ -49,33 +49,33 @@
                             <li>
                                 </div>
                                 </div>
-                                    <br>
-                                    <br>
-<!--                                <div class="banner ban1">
-                                    <div class="container">
-                                        <div align="center" class="top-menu">
-                                            <span class="menu"> alt=""/> </span>
-                                            <ul>
-                                                <li><a href="HomeEaters.jsp">home</a></li>
-                                                <li><a href="about.html">about</a></li> memberikan detail informasi GetEat! 
-                                                <li><a href="menu.html">menus</a></li>
-                                                <li><a href="gallery.html">gallery</a></li>
-                                                <li><a href="events.html">discount</a></li> akan memanggil halaman berisi promo atau discount tenant 
-                                                <li><a href="contact.html">contact</a></li>
-                                            </ul>
-                                             script for menu 
-
-                                            <script>
-                                                $("span.menu").click(function () {
-                                                    $(".top-menu ul").slideToggle("slow", function () {
-                                                    });
-                                                });
-                                            </script>
-                                             //script for menu 
-
-                                        </div>
-                                    </div>
-                                </div>-->
+                                <br>
+                                <br>
+                                <!--                                <div class="banner ban1">
+                                                                    <div class="container">
+                                                                        <div align="center" class="top-menu">
+                                                                            <span class="menu"> alt=""/> </span>
+                                                                            <ul>
+                                                                                <li><a href="HomeEaters.jsp">home</a></li>
+                                                                                <li><a href="about.html">about</a></li> memberikan detail informasi GetEat! 
+                                                                                <li><a href="menu.html">menus</a></li>
+                                                                                <li><a href="gallery.html">gallery</a></li>
+                                                                                <li><a href="events.html">discount</a></li> akan memanggil halaman berisi promo atau discount tenant 
+                                                                                <li><a href="contact.html">contact</a></li>
+                                                                            </ul>
+                                                                             script for menu 
+                                
+                                                                            <script>
+                                                                                $("span.menu").click(function () {
+                                                                                    $(".top-menu ul").slideToggle("slow", function () {
+                                                                                    });
+                                                                                });
+                                                                            </script>
+                                                                             //script for menu 
+                                
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
 
                                 <div class="content-main">
                                     <div class="content-left">
@@ -93,28 +93,29 @@
 
 
                                             %>
-                                            <div class="meal-left">
+                                            <div class="meal-left test1">
                                                 <img src="<%=res.getString("Image")%>" alt="" />
-                                                <div class="berger-top">
-                                                    <h3><%=res.getString("Reviewer")%></h3>
+                                                <div class="textbox">
+                                                    <p>Posted by : </p>
+                                                    <h4><%=res.getString("Reviewer")%></h4>
                                                     <p>FOODHUNTER</p>
-                                                    <span><%=res.getString("Namatenant")%></span>
+                                                    <p><%=res.getString("Namatenant")%></p>
                                                 </div>
                                                 <div class="berger-side">
                                                     <a href="#"><span></span></a>
-                                                    <td><p><%=res.getString("rating")%></td>
+                                                    <td><p><%=res.getDouble("rating")%></td>
                                                     </p>
                                                 </div>
                                                 <div class="berger-sidetwo">
                                                     <a href="#"><span></span></a>
                                                     <p>
-                                                    <td><%=res.getString("useful")%></td>
+                                                    <td><%=res.getInt("useful")%></td>
                                                     </p>
                                                 </div>
                                                 <div class="berger-sidethree">
                                                     <a href="#"><span></span></a>
                                                     <p>
-                                                    <td><%=res.getString("funny")%></td>
+                                                    <td><%=res.getInt("funny")%></td>
                                                     </p>
                                                 </div>
                                                 <div class="berger">
@@ -137,7 +138,23 @@
                                                                 <td><p></p></td>
                                                                 <td><p></p></td>
                                                                 <td>
-                                                                    <a href="RatingServlet?id=<%=request.getParameter("id")%>"><img src="images/rate.png" width="50px" height="50px"></a>
+                                                                    <a href="RatingServlet?id=<%=request.getParameter("id")%>&rating=1"><img src="images/rate.png" width="25px" height="25px"></a>
+                                                                    <!-- ketika di-klik akan menambah nilai atribut rating dengan 1 pada review tersebut-->
+                                                                </td>
+                                                                <td>
+                                                                    <a href="RatingServlet?id=<%=request.getParameter("id")%>&rating=2"><img src="images/rate.png" width="25px" height="25px"></a>
+                                                                    <!-- ketika di-klik akan menambah nilai atribut rating dengan 1 pada review tersebut-->
+                                                                </td>
+                                                                <td>
+                                                                    <a href="RatingServlet?id=<%=request.getParameter("id")%>&rating=3"><img src="images/rate.png" width="25px" height="25px"></a>
+                                                                    <!-- ketika di-klik akan menambah nilai atribut rating dengan 1 pada review tersebut-->
+                                                                </td>
+                                                                <td>
+                                                                    <a href="RatingServlet?id=<%=request.getParameter("id")%>&rating=4"><img src="images/rate.png" width="25px" height="25px"></a>
+                                                                    <!-- ketika di-klik akan menambah nilai atribut rating dengan 1 pada review tersebut-->
+                                                                </td>
+                                                                <td>
+                                                                    <a href="RatingServlet?id=<%=request.getParameter("id")%>&rating=5"><img src="images/rate.png" width="25px" height="25px"></a>
                                                                     <!-- ketika di-klik akan menambah nilai atribut rating dengan 1 pada review tersebut-->
                                                                 </td>
                                                             </tr>
@@ -245,8 +262,6 @@
                                                     <br>
                                                     <% while (res1.next()) {
                                                     %>
-                                                    <b><font color="yellow"><%=session.getAttribute("Username")%></font></b>
-                                                    <font color="white"> : </font>
                                                     <font color="white"><%=res1.getString("COMMENTDETAIL")%></font>
                                                     <hr>
                                                     <%}%>

@@ -40,7 +40,8 @@ public class RatingServlet extends HttpServlet {
         ReviewDAO rdao = new ReviewDAO();
         Review r = new Review();
         try {
-             r.setIdReview(request.getParameter("id"));
+            r.setRating((Double.parseDouble(request.getParameter("rating"))));
+            r.setIdReview(request.getParameter("id"));
             rdao.addRating(r);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Rating&Comment.jsp");
             dispatcher.forward(request, response);

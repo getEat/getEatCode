@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,13 +44,12 @@ public class ReviewDAO {
         rv.setCity("test");
         rv.setKategori("test");
         String id = rvDAO.gen();
-        String idtent = tnDAO.gen(); 
+        String idtent = tnDAO.gen();
         tnDAO.addTenant(tn, idtent);
         rvDAO.addReview(tn, rv, id, idtent);
-        
+
 //        rv.setImages("test");
 //        rvDAO.uploadfoto(rv, "R15371");
-
     }
 
     public static List<Review> listReview() throws SQLException {
@@ -65,7 +65,7 @@ public class ReviewDAO {
             r.setIdReview(res.getString("IDREVIEW"));
             r.setUseful(Integer.parseInt(res.getString("USEFUL")));
             r.setFunny(Integer.parseInt(res.getString("FUNNY")));
-            r.setRating(Integer.parseInt(res.getString("RATING")));
+            r.setRating(Double.parseDouble(res.getString("RATING")));
             r.setComment(res.getString("COMMENTS"));
             r.setStatus(res.getString("STATUS"));
             r.setReportDetails(res.getString("REPORTDETAILS"));
@@ -87,7 +87,7 @@ public class ReviewDAO {
             r.setIdReview(res.getString("idreview"));
             r.setUseful(res.getInt("useful"));
             r.setFunny(res.getInt("funny"));
-            r.setRating(res.getInt("rating"));
+            r.setRating(res.getDouble("rating"));
             r.setComment(res.getString("comments"));
             r.setStatus(res.getString("status"));
             r.setReportDetails(res.getString("reportdetails"));
@@ -110,7 +110,7 @@ public class ReviewDAO {
         PreparedStatement preparedstatement;
         int useful = getUseful(review.getIdReview()) + 1;
         try {
-            preparedstatement = conn.prepareStatement("update REVIEW set Useful=" + useful + " where idReview='"+review.getIdReview()+"'");
+            preparedstatement = conn.prepareStatement("update REVIEW set Useful=" + useful + " where idReview='" + review.getIdReview() + "'");
             preparedstatement.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -123,7 +123,7 @@ public class ReviewDAO {
         PreparedStatement preparedstatement;
         int funny = getFunny(review.getIdReview()) + 1;
         try {
-            preparedstatement = conn.prepareStatement("update REVIEW set Funny=" + funny + " where idReview='"+review.getIdReview()+"'");
+            preparedstatement = conn.prepareStatement("update REVIEW set Funny=" + funny + " where idReview='" + review.getIdReview() + "'");
             preparedstatement.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -134,12 +134,27 @@ public class ReviewDAO {
 
     public void addRating(Review review) throws SQLException {
         PreparedStatement preparedstatement;
-        int rating = getRating(review.getIdReview()) + 1;
+        Statement statement = conn.createStatement();
+        String sql = "SELECT * FROM REVIEW WHERE IDREVIEW = '" + review.getIdReview() + "'";
+        ResultSet res = statement.executeQuery(sql);
+        double rate = 0;
+        while (res.next()) {
+            rate = res.getDouble("RATING");
+        }
+        String sql1 = "SELECT * FROM EATERS";
+        ResultSet res1 = statement.executeQuery(sql1);
+        int count = 0;
+        while (res1.next()) {
+            count = count + 1;
+        }
+        double rating = rate + review.getRating() / count;
+        DecimalFormat df = new DecimalFormat("#.#");
+        rating = Double.valueOf(df.format(rating));
+        if (rating > 5) {
+            rating = 5;
+        }
         try {
-            if (rating >= 6) {
-                conn.close();
-            }
-            preparedstatement = conn.prepareStatement("update REVIEW set Rating=" + rating + " where idReview='"+review.getIdReview()+"'");
+            preparedstatement = conn.prepareStatement("update REVIEW set Rating=" + rating + " where idReview='" + review.getIdReview() + "'");
             preparedstatement.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -198,7 +213,7 @@ public class ReviewDAO {
 
     public void addComment(Review review) throws SQLException {
         String sql = "INSERT INTO COMMENTS(IDREVIEW,COMMENTDETAIL)"
-                + " VALUES ('"+review.getIdReview()+"','"+review.getComment()+"')";
+                + " VALUES ('" + review.getIdReview() + "','" + review.getComment() + "')";
         Statement stat;
         try {
             stat = conn.createStatement();
@@ -213,7 +228,7 @@ public class ReviewDAO {
     public void Report(Review review) {
         PreparedStatement preparedstatement;
         try {
-            preparedstatement = conn.prepareStatement("update REVIEW set STATUS=?, REPORTDETAILS=? where IDREVIEW='"+review.getIdReview()+"'");
+            preparedstatement = conn.prepareStatement("update REVIEW set STATUS=?, REPORTDETAILS=? where IDREVIEW='" + review.getIdReview() + "'");
             preparedstatement.setString(1, review.getStatus());
             preparedstatement.setString(2, review.getReportDetails());
             preparedstatement.executeUpdate();
@@ -221,12 +236,26 @@ public class ReviewDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    public void addReview(Tenant tnt, Review rw, String idreview,String idtenant) throws SQLException {
+    public void UpdateReview(Review review) {
+        PreparedStatement preparedstatement;
+        try {
+            preparedstatement = conn.prepareStatement("update REVIEW set kategori=?, reviewdetail=? where IDREVIEW='" + review.getIdReview() + "'");
+            preparedstatement.setString(1, review.getKategori());
+            preparedstatement.setString(2, review.getReview());
+            preparedstatement.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addReview(Tenant tnt, Review rw, String idreview, String idtenant) throws SQLException {
         Statement statement;
         String rev = "insert into review (idReview, reviewdetail, reviewer, useful, funny,rating,status, NamaTenant,image,city,kategori,idtenant) "
-                + "values('" + idreview + "','" + rw.getReview() + "','" + rw.getReviewer() + "',0,0,0,'UNREPORTED','" + tnt.getNama() + "','null','"+rw.getCity()+"','"+rw.getKategori()+"','"+idtenant+"')";
+                + "values('" + idreview + "','" + rw.getReview() + "','" + rw.getReviewer() + "',0,0,0,'UNREPORTED','" + tnt.getNama() + "','null','" + rw.getCity() + "','" + rw.getKategori() + "','" + idtenant + "')";
 
         Statement stat = conn.createStatement();
         stat.executeUpdate(rev);
@@ -244,7 +273,7 @@ public class ReviewDAO {
         Random r = new Random(System.currentTimeMillis());
         return "R" + String.valueOf((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
     }
-    
+
     public List<Review> getAllReviews(String tenantId) {
         List<Review> review = new ArrayList<Review>();
         try {
@@ -255,11 +284,11 @@ public class ReviewDAO {
             while (rs.next()) {
                 Review rev = new Review();
                 Tenant te = new Tenant();
-                
+
                 rev.setIdReview(rs.getString("IDREVIEW"));
                 rev.setUseful(rs.getInt("USEFUL"));
                 rev.setFunny(rs.getInt("FUNNY"));
-                rev.setRating(rs.getInt("RATING"));
+                rev.setRating(rs.getDouble("RATING"));
                 rev.setReview(rs.getString("REVIEWDETAIL"));
                 rev.setStatus(rs.getString("STATUS"));
                 rev.setReportDetails(rs.getString("REPORTDETAILS"));
@@ -269,7 +298,7 @@ public class ReviewDAO {
                 rev.setKategori(rs.getString("KATEGORI"));
                 rev.setCity(rs.getString("CITY"));
                 rev.setIdTenant(rs.getString("IDTENANT"));
-                
+
 //                
                 review.add(rev);
             }
