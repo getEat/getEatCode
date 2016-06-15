@@ -21,8 +21,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <meta name="keywords" content="Flat Reviews Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, sony ericsson, Motorola web design" />
         <link href="css/styleProfile.css" rel="stylesheet" type="text/css" media="all"/>
-        <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
+<!--        <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>-->
         <script src="js/jquery.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </head>
@@ -69,7 +69,6 @@
             <div class="login">
                 <div class="header">
                     <div class="text">
-                        <img src="images/men1.jpg" alt="" />
                         <div class="text-left">
                             <h2><%=session.getAttribute("Username")%></h2>
                             <p>EATERS</p>

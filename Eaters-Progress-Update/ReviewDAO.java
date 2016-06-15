@@ -66,7 +66,7 @@ public class ReviewDAO {
             r.setUseful(Integer.parseInt(res.getString("USEFUL")));
             r.setFunny(Integer.parseInt(res.getString("FUNNY")));
             r.setRating(Double.parseDouble(res.getString("RATING")));
-            r.setComment(res.getString("COMMENTS"));
+//            r.setComment(res.getString("COMMENTS"));
             r.setStatus(res.getString("STATUS"));
             r.setReportDetails(res.getString("REPORTDETAILS"));
             ls.add(r);
@@ -88,7 +88,7 @@ public class ReviewDAO {
             r.setUseful(res.getInt("useful"));
             r.setFunny(res.getInt("funny"));
             r.setRating(res.getDouble("rating"));
-            r.setComment(res.getString("comments"));
+     
             r.setStatus(res.getString("status"));
             r.setReportDetails(res.getString("reportdetails"));
             ls.add(r);
@@ -288,7 +288,6 @@ public class ReviewDAO {
                 rev.setIdReview(rs.getString("IDREVIEW"));
                 rev.setUseful(rs.getInt("USEFUL"));
                 rev.setFunny(rs.getInt("FUNNY"));
-                rev.setRating(rs.getDouble("RATING"));
                 rev.setReview(rs.getString("REVIEWDETAIL"));
                 rev.setStatus(rs.getString("STATUS"));
                 rev.setReportDetails(rs.getString("REPORTDETAILS"));
@@ -298,6 +297,7 @@ public class ReviewDAO {
                 rev.setKategori(rs.getString("KATEGORI"));
                 rev.setCity(rs.getString("CITY"));
                 rev.setIdTenant(rs.getString("IDTENANT"));
+                rev.setRating(rs.getDouble("RATING"));
 
 //                
                 review.add(rev);

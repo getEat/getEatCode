@@ -9,19 +9,17 @@ public class Eaters extends Member {
     private String Nama;
     private String alamat;
     private String email;
-    private String Foto;
     private Member m;
 
     public Eaters() {
 
     }
 
-    public Eaters(Member m, String Nama, String alamat, String email, String Foto) {
+    public Eaters(Member m, String Nama, String alamat, String email) {
         this.m = m;
         this.Nama = Nama;
         this.alamat = alamat;
         this.email = email;
-        this.Foto = Foto;
     }
 
     /**
@@ -64,20 +62,6 @@ public class Eaters extends Member {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    /**
-     * @return the Foto
-     */
-    public String getFoto() {
-        return Foto;
-    }
-
-    /**
-     * @param Foto the Foto to set
-     */
-    public void setFoto(String Foto) {
-        this.Foto = Foto;
     }
 
     /**

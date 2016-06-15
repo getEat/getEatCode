@@ -170,7 +170,7 @@
                                                         <table border="0" width="250px" height="40px" align="center">
                                                             <tr>
                                                                 <td>
-                                                                    <a href="http://www.facebook.com"><img src="images/fb2.png" width="50px" height="50px"></a>
+                                                                    <a href="http://www.facebook.com" target="_blank"><img src="images/fb2.png" width="50px" height="50px"></a>
                                                                     <!-- ketika di-klik akan menambah nilai atribut useful dengan 1 pada review tersebut-->
                                                                 </td>
                                                                 <td><p></p></td>
@@ -178,14 +178,14 @@
                                                                 <td><p></p></td>
                                                                 <td><p></p></td>
                                                                 <td>
-                                                                    <a href="http://www.twitter.com"><img src="images/tw2.png" width="50px" height="50px"></a>
+                                                                    <a href="http://www.twitter.com" target="_blank"><img src="images/tw2.png" width="50px" height="50px"></a>
                                                                     <!-- ketika di-klik akan menambah nilai atribut funny dengan 1 pada review tersebut-->
                                                                 </td>
                                                                 <td><p></p></td>
                                                                 <td><p></p></td>
                                                                 <td><p></p></td>
                                                                 <td>
-                                                                    <a href="http://www.pinterest.com"><img src="images/pi2.png" width="50px" height="50px"></a>
+                                                                    <a href="http://www.pinterest.com" target="_blank"><img src="images/pi2.png" width="50px" height="50px"></a>
                                                                     <!-- ketika di-klik akan menambah nilai atribut rating dengan 1 pada review tersebut-->
                                                                 </td>
                                                             </tr>

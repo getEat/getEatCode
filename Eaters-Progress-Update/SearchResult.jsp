@@ -192,13 +192,15 @@
                                                                 counter = 1;
                                                             }
                                                         %>
-                                                        <a href="Rating&Comment.jsp?id=<%=res.getString("idReview")%>"><img src="<%=res.getString("Image")%>"></a>
+                                                        <img src="<%=res.getString("Image")%>">
+                                                        <a href="Rating&Comment.jsp?id=<%=res.getString("idReview")%>">
                                                         <div class="textbox">
                                                             <p>Posted by : </p>
                                                             <h4><%=res.getString("Reviewer")%></h4>
                                                             <p>FOODHUNTER</p>
                                                             <p><%=res.getString("Namatenant")%></p>
                                                         </div>
+                                                        </a>
                                                         <div class="berger-side">
                                                             <a href="#"><span></span></a>
                                                             <p><%=res.getDouble("rating")%>

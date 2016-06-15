@@ -29,9 +29,9 @@ public class MemberDAO {
 
     public MemberDAO() {
     }
+    
 
     public MemberDAO (Connection connection) { 
-       
     }
         public static List<Member> listMemberAktif() throws SQLException {
         List<Member> ls = new LinkedList<>();
@@ -172,6 +172,15 @@ public class MemberDAO {
         Statement statement ;
         String sql = "insert into member (idMember,userName,password,tipe,Status) "
                 + "values('" +id + "','" + member.getUserName() + "','" +member.getPassword()+ "','FOODHUNTER','PENDING')";
+        Statement stat = conn.createStatement();
+        stat.executeUpdate(sql);
+//        conn.commit();
+        conn.close();
+    }
+     public void addtenant(Member member, String id) throws SQLException {
+        Statement statement ;
+        String sql = "insert into member (idMember,userName,password,tipe,Status) "
+                + "values('" +id + "','" + member.getUserName() + "','" +member.getPassword()+ "','TENANT','AKTIF')";
         Statement stat = conn.createStatement();
         stat.executeUpdate(sql);
 //        conn.commit();

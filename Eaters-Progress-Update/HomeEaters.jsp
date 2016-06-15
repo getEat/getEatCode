@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GetEat! | Home</title>
+        <title>GetEat! | Home Eaters</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Food and Drink Ui Kit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -163,18 +163,18 @@
                                                             </div>
                                                         </a>
                                                         <div class="berger-side">
-                                                            <a href="#"><span></span></a>
+                                                            <span></span>
                                                             <p><%=res.getDouble("rating")%>
                                                             </p>
                                                         </div>
                                                         <div class="berger-sidetwo">
-                                                            <a href="#"><span></span></a>
+                                                            <span></span>
                                                             <p>
                                                             <td><%=res.getInt("useful")%></td>
                                                             </p>
                                                         </div>
                                                         <div class="berger-sidethree">
-                                                            <a href="#"><span></span></a>
+                                                            <span></span>
                                                             <p>
                                                             <td><%=res.getInt("funny")%></td>
                                                             </p>

@@ -40,7 +40,7 @@
                         <input type="password" class="form-control" placeholder="Password" name="Password"> <!-- memasukkan atribut password dan akan disimpan dalam atribut password pada class Member status Eaters -->
                         <i class="fa fa-user"></i>
                     </div>
-                    <button type="button" id='register-button' class="log-btn" >Register</button>
+                    <button type="submit" id='register-button' class="log-btn" >Register</button>
                     <br>
                     <br>
                     <a href="Login.html"><button type="button" id='register-button' class="log-btn" >Back</button></a>
